@@ -1,9 +1,12 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { House, CalendarDays, Medal } from "lucide-react";
+import { Users } from "lucide-react";
 import DemoPage from "./demo/page.js"; // Adjust path if necessary
-import Page2 from "./page2/page.js"
-import Page3 from "./page3/page.js"
+import Page2 from "./page2/page.js";
+import Page3 from "./page3/page.js";
+import Page5 from "./page5/page.js";
+import Page4 from "./page4/page.js";
 
 export default function SparkleBackground() {
   const canvasRef = useRef(null);
@@ -124,9 +127,7 @@ export default function SparkleBackground() {
 
     const init = () => {
       canvas.width = window.innerWidth;
-      // Keep canvas constrained to viewport height for the hero background
-      canvas.height = window.innerHeight; 
-
+      canvas.height = window.innerHeight;
       particles = Array.from({ length: 200 }, () => new Particle(canvas.width, canvas.height));
       stationaryStars = Array.from({ length: 40 }, () => new StationaryStar(Math.random() * canvas.width, Math.random() * canvas.height));
     };
@@ -159,43 +160,70 @@ export default function SparkleBackground() {
   }, []);
 
   return (
-    // Removed `overflow-hidden` so the page can scroll naturally
     <div className="relative min-h-screen w-full bg-[#050505]">
-      {/* 1. Navbar */}
-      <div className="p-4 flex items-center relative z-50">
-        <img
-          src="./logo.png"
-          alt="Camp Logo"
-          className="h-10 md:h-12 w-auto object-contain drop-shadow-md"
-        />
-        <h1 className="text-3xl font-bold text-white ml-4">CSI</h1>
-      </div>
       
-      <nav
-        className="fixed top-0 left-1/2 -translate-x-1/2 w-[90%] md:w-[60%] lg:w-[50%] h-[80px] z-[100] 
-        bg-[#050505]/80 backdrop-blur-md rounded-b-[60px] flex items-center justify-center
-        border-b-8 border-l-2 border-r-2 
-        border-transparent [background-clip:padding-box,border-box] [background-origin:padding-box,border-box]
-        bg-[linear-gradient(#050505,#050505),linear-gradient(to_bottom,rgba(255,255,255,0.4),rgba(255,255,255,0.3),rgba(0,0,0,0.5))]
-        shadow-[0_10px_30px_rgba(46,204,113,0.2),inset_0_2px_4px_rgba(255,255,255,0.3)]"
-      >
-        <div className="flex items-center justify-center gap-[40px] md:gap-[80px] text-xl md:text-2xl">
-          <button className="text-white hover:text-green-400 transition-colors drop-shadow-md flex gap-2 items-center justify-center">
-            <House size={24} />
-            <span className="hidden md:block">Home</span>
-          </button>
+      {/* 1. Global Fixed Navigation Wrapper */}
+      <header className="fixed top-0 left-0 w-full z-[100] h-[80px] flex justify-between items-start px-4 md:px-8 pointer-events-none">
+        
+        {/* Left: Logo (flex-1 ensures it balances the right side perfectly) */}
+        <div className="flex-1 flex items-center h-full pointer-events-auto">
+          <img
+            src="./logo.png"
+            alt="Camp Logo"
+            className="h-8 md:h-12 w-auto object-contain drop-shadow-md"
+          />
+          <h1 className="text-2xl md:text-3xl font-bold text-white ml-3 hidden sm:block">CSI</h1>
+        </div>
+        
+        {/* Center: Main Nav Background (shrink-0 keeps it sized to its content) */}
+        <nav
+          className="shrink-0 pointer-events-auto px-6 md:px-16 h-full
+          bg-[#050505]/80 backdrop-blur-md rounded-b-[60px] flex items-center justify-center
+          border-b-8 border-l-2 border-r-2 
+          border-transparent [background-clip:padding-box,border-box] [background-origin:padding-box,border-box]
+          bg-[linear-gradient(#050505,#050505),linear-gradient(to_bottom,rgba(255,255,255,0.4),rgba(255,255,255,0.3),rgba(0,0,0,0.5))]
+          shadow-[0_10px_30px_rgba(46,204,113,0.2),inset_0_2px_4px_rgba(255,255,255,0.3)]"
+        >
+          <div className="flex items-center justify-center gap-[24px] md:gap-[60px] text-lg md:text-xl">
+            <button className="text-white hover:text-green-400 transition-colors drop-shadow-md flex gap-2 items-center justify-center">
+              <House size={24} />
+              <span className="hidden lg:block">Home</span>
+            </button>
 
-          <button className="text-white hover:text-green-400 transition-colors drop-shadow-md flex gap-2 items-center justify-center">
-            <CalendarDays size={24} />
-            <span className="hidden md:block">Weeks</span>
-          </button>
+            <button className="text-white hover:text-green-400 transition-colors drop-shadow-md flex gap-2 items-center justify-center">
+              <CalendarDays size={24} />
+              <span className="hidden lg:block">Weeks</span>
+            </button>
 
-          <button className="text-white hover:text-green-400 transition-colors drop-shadow-md flex gap-2 items-center justify-center">
-            <Medal size={24} />
-            <span className="hidden md:block">Leaderboard</span>
+            <button className="text-white hover:text-green-400 transition-colors drop-shadow-md flex gap-2 items-center justify-center">
+              <Medal size={24} />
+              <span className="hidden lg:block">Leaderboard</span>
+            </button>
+          </div>
+        </nav>
+
+        {/* Right: Action Button */}
+        <div className="flex-1 flex items-center justify-end h-full pointer-events-auto">
+          <button 
+            className="group relative px-4 md:px-6 py-2 md:py-2.5 rounded-xl md:rounded-full text-sm md:text-base font-bold text-gray-100 transition-all duration-300
+              border-t border-l border-r border-b-4 border-transparent
+              [background-clip:padding-box,border-box] [background-origin:padding-box,border-box]
+              bg-[linear-gradient(#1a1f26,#0d1117),linear-gradient(to_bottom,rgba(255,255,255,0.4),rgba(255,255,255,0.05),rgba(0,0,0,0.8))]
+              shadow-[0_5px_15px_rgba(0,0,0,0.6),inset_0_1px_2px_rgba(255,255,255,0.3)]
+              hover:scale-105 hover:shadow-[0_0_20px_rgba(46,204,113,0.4),inset_0_1px_2px_rgba(255,255,255,0.4)]
+              active:scale-95 flex items-center gap-2"
+          >
+            {/* Glowing Green Status Dot */}
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_#22c55e]" />
+            
+            <span className="hidden xl:block tracking-wide">Meet Characters</span>
+            <span className="hidden sm:block xl:hidden tracking-wide">Characters</span>
+            
+            {/* Mobile Icon Fallback */}
+            <Users size={18} className="sm:hidden text-green-400 group-hover:text-white transition-colors" />
           </button>
         </div>
-      </nav>
+      </header>
 
       {/* 2. Hero Background Layer (Aura + Canvas) - Kept fixed to viewport */}
       <div className="fixed inset-0 pointer-events-none z-0 h-screen overflow-hidden">
@@ -209,7 +237,7 @@ export default function SparkleBackground() {
       </div>
 
       {/* 3. Main Hero Content Layer */}
-      <main className="relative z-10 pt-[80px] w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 md:px-12 min-h-[calc(100vh-80px)]">
+      <main className="relative z-10 pt-[100px] w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 md:px-12 min-h-[calc(100vh-80px)]">
         {/* Left Column: Text */}
         <div className="w-full md:w-[55%] h-auto flex flex-col justify-center py-12 md:py-0">
           <p className="text-gray-400 tracking-[0.3em] uppercase text-sm md:text-base mb-4 ml-1">
@@ -261,14 +289,12 @@ export default function SparkleBackground() {
             className="w-full max-w-[400px] md:max-w-[500px] object-contain relative z-10 drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:translate-y-[-10px] transition-transform duration-500"
           />
         </div>
-
-        
       </main>
 
-      <Page2/>
-
-      <Page3/>
-
+      <Page2 />
+      <Page3 />
+      <Page5 />
+      <Page4 />
       
     </div>
   );
