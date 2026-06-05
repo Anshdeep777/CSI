@@ -1061,7 +1061,7 @@ const Page = () => {
                         <div className="absolute inset-[-500%] animate-[spin_2.5s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_50%,#c084fc_100%)] opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
                         <div className="relative h-full w-full bg-[#020604] rounded-xl flex">
                           <DossierButton
-                            href="https://drive.google.com/file/d/1rDMBv_UlwhtZshNkr7U1o-cxkk7L-4VX/view"
+                            href="https://drive.google.com/file/d/1nXKtu4KBEj8oYxL_hr8CdnI54aKgNT1b/view?usp=sharing"
                             icon={Activity}
                             label="ASSET: Feedback & Trade-Offs"
                             color="green"
