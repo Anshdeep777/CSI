@@ -23,7 +23,7 @@ const Page = () => {
         <nav className="flex-1 px-4 py-6 space-y-3">
           <TabButton 
             active={pathname === "/"} 
-            onClick={() => router.push("/")} 
+            onClick={() => router.push("/weeks/01")} 
             icon={<MessageSquare size={18} />} 
             label="Discussions" 
             color="cyan" 
@@ -85,15 +85,15 @@ const Page = () => {
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 w-full gap-8 lg:gap-0 items-center">
             
             <div className="flex flex-col items-center lg:items-start justify-center p-6 md:p-8 lg:pl-16 backdrop-blur-[2px]">
-              <div className="flex items-center gap-2 text-[10px] md:text-xs text-red-500 font-bold tracking-widest uppercase mb-4 animate-pulse">
+              <div className="flex items-center gap-2 text-[10px] md:text-xs text-red-500 font-bold tracking-widest uppercase mb-4 ">
                 <span className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]" />
-                System Active • Initialization Protocol[cite: 138]
+                Initialization Protocol
               </div>
 
               <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight leading-none uppercase text-center lg:text-left transition-all">
                 WEEK 01: <br />
                 <span className="text-green-400 flex gap-2 md:gap-3 items-center justify-center lg:justify-start mt-2 drop-shadow-[0_0_10px_rgba(74,222,128,0.2)]">
-                  WELCOME TO THE CHAOS[cite: 138]
+                  WELCOME TO THE CHAOS
                   <TriangleAlert className="text-red-500 fill-red-500/20 animate-pulse w-8 h-8 md:w-9 md:h-9 shrink-0" />
                 </span>
               </h1>
@@ -121,8 +121,8 @@ const Page = () => {
                   </div>
 
                   <button className="w-full flex items-center justify-center gap-2 border border-green-500/30 bg-gradient-to-r from-green-950/40 to-emerald-900/40 hover:from-green-900/40 hover:to-emerald-800/40 rounded-xl py-3.5 text-xs text-green-300 hover:text-white font-bold tracking-wider uppercase transition-all duration-200 active:scale-[0.99]">
-                    <span className="tracking-wider">Start Operation Adventure</span>
-                    <span className="text-green-400 group-hover:translate-x-0.5 transition-transform">→</span>
+                    <span className="tracking-wider">Start  Adventure</span>
+                    
                   </button>
                 </div>
               </div>
@@ -134,7 +134,7 @@ const Page = () => {
                 <div className="absolute -inset-0.5 bg-gradient-to-b from-white/10 to-transparent rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-500" />
                 
                 <img
-                  src="/poster.png"
+                  src="/poster2.jpeg"
                   className="w-full h-auto relative z-10 border border-white/10 bg-zinc-950 rounded-2xl drop-shadow-[0_25px_65px_rgba(0,0,0,0.9)] object-contain transition-transform duration-700 ease-out group-hover:scale-[1.01]"
                   alt="Operations Strategic Team Poster"
                 />
@@ -167,7 +167,7 @@ const Page = () => {
                   <div className="tracking-wide">
                     <span className="text-gray-500 font-semibold">FROM:</span>{" "}
                     <span className="text-white font-bold font-sans">Priya Nair</span>{" "}
-                    <span className="text-gray-400 text-[10px] md:text-[11px]">(Co-founder & COO, Sprint)[cite: 141]</span>
+                    <span className="text-gray-400 text-[10px] md:text-[11px]">(Co-founder & COO, Sprint)</span>
                   </div>
                 </div>
                 <span className="bg-red-950/40 text-red-400 font-black tracking-widest uppercase text-[9px] px-2 py-0.5 rounded border border-red-500/20">
@@ -177,11 +177,11 @@ const Page = () => {
 
               <div className="mb-4 text-xs flex items-center gap-1.5">
                 <span className="text-gray-600 font-bold shrink-0">SUBJECT:</span>
-                <span className="text-gray-200 font-bold tracking-wide truncate">You're Hired. Here's the Situation.[cite: 141]</span>
+                <span className="text-gray-200 font-bold tracking-wide truncate">You're Hired. Here's the Situation.</span>
               </div>
 
               <p className="text-sm md:text-base text-gray-300 leading-relaxed font-sans pl-3.5 border-l-2 border-red-500/30 bg-gradient-to-r from-red-500/[0.01] to-transparent py-1 pr-1">
-                Welcome to the team. Sprint is bleeding money, and GreenBridge Capital blocked our ₹800 Cr Series B because of our ESG metrics.[cite: 142] I need your consulting pod to figure out what we are actually dealing with.[cite: 143] Start by understanding our business inside and out. Let's talk today.[cite: 144]
+                Welcome to the team. Sprint is bleeding money, and GreenBridge Capital blocked our ₹800 Cr Series B because of our ESG metrics. I need your consulting pod to figure out what we are actually dealing with. Start by understanding our business inside and out. Let's talk today.
               </p>
             </div>
 

@@ -22,10 +22,8 @@ const DocumentIcon = ({ className = "w-6 h-6 text-zinc-400" }) => (
 );
 
 const Page = () => {
-  // Added state for the active filter
   const [activeWeek, setActiveWeek] = useState("week01");
 
-  // Added a 'week' property to each document for filtering
   const documents = [
     {
       id: 1,
@@ -78,7 +76,6 @@ const Page = () => {
     },
   ];
 
-  // Filter documents based on active tab
   const filteredDocs = documents.filter((doc) => doc.week === activeWeek);
 
   return (
@@ -101,28 +98,46 @@ const Page = () => {
         </p>
       </div>
 
-      {/* Week Filter Toggle */}
-      <div className="flex gap-4 mb-12 bg-zinc-900/50 p-1.5 rounded-full border border-white/10 backdrop-blur-md">
-        <button
-          onClick={() => setActiveWeek("week01")}
-          className={`px-6 py-2 rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 ${
-            activeWeek === "week01"
-              ? "bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.2)]"
-              : "text-zinc-500 hover:text-zinc-300"
-          }`}
+      {/* Week Filter Toggle & Highlighted Mother Link */}
+      <div className="flex flex-col items-center mb-12">
+        <div className="flex gap-4 bg-zinc-900/50 p-1.5 rounded-full border border-white/10 backdrop-blur-md">
+          <button
+            onClick={() => setActiveWeek("week01")}
+            className={`px-6 py-2 rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 ${
+              activeWeek === "week01"
+                ? "bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+                : "text-zinc-500 hover:text-zinc-300"
+            }`}
+          >
+            Week 01
+          </button>
+          <button
+            onClick={() => setActiveWeek("week02")}
+            className={`px-6 py-2 rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 ${
+              activeWeek === "week02"
+                ? "bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+                : "text-zinc-500 hover:text-zinc-300"
+            }`}
+          >
+            Week 02
+          </button>
+        </div>
+        
+        {/* Highlighted Mother Link Button */}
+        <a 
+          href="https://drive.google.com/drive/folders/1FFmrwthLLzjJBJz9aVwlxzTC6wO8PoYK"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 flex items-center gap-3 px-8 py-3.5 rounded-full bg-gradient-to-b from-zinc-800 to-zinc-950 border border-zinc-700 hover:border-zinc-400 text-zinc-300 hover:text-white shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-300 group active:scale-95"
         >
-          Week 01
-        </button>
-        <button
-          onClick={() => setActiveWeek("week02")}
-          className={`px-6 py-2 rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 ${
-            activeWeek === "week02"
-              ? "bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.2)]"
-              : "text-zinc-500 hover:text-zinc-300"
-          }`}
-        >
-          Week 02
-        </button>
+          <DocumentIcon className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors" />
+          <span className="text-xs md:text-sm font-bold tracking-widest uppercase">
+            Explore All Resources At Once
+          </span>
+          <span className="text-zinc-500 group-hover:text-white group-hover:translate-x-1.5 transition-all duration-300">
+            →
+          </span>
+        </a>
       </div>
 
       {/* Conditional Rendering: Grid or Empty State */}

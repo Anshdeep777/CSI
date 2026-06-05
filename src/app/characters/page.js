@@ -111,7 +111,7 @@ export default function CardGallery() {
   ];
 
   return (
-    <div className="card-gallery">
+    <div className="card-gallery mt-10">
       {cardsData.map((card) => (
         <MetallicCard 
           key={card.id}
