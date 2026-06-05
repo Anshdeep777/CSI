@@ -3,7 +3,7 @@
 import React from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { TriangleAlert, MessageSquare, Folder, FileText, Mail } from "lucide-react";
-import VikramPage from '@/app/vikram/page.js';
+import PriyaPage from '@/app/priya/page.js';
 
 const Page = () => {
   const router = useRouter();
@@ -12,6 +12,7 @@ const Page = () => {
   return (
     <div className="flex min-h-screen bg-black w-full overflow-hidden">
       
+      {/* DESKTOP SIDEBAR */}
       <aside className="hidden md:flex flex-col fixed left-0 top-0 h-screen w-64 bg-black/40 backdrop-blur-2xl border-r border-white/10 z-50 pt-[80px] shadow-[20px_0_50px_rgba(0,0,0,0.5)]">
         <div className="px-6 pb-6 border-b border-white/5 relative">
           <div className="absolute top-0 left-0 w-[2px] h-full bg-gradient-to-b from-cyan-500 to-green-500" />
@@ -50,6 +51,7 @@ const Page = () => {
         </div>
       </aside>
 
+      {/* MOBILE BOTTOM NAV */}
       <nav className="md:hidden fixed bottom-0 left-0 w-full bg-black/80 backdrop-blur-xl border-t border-white/10 z-50 pb-safe shadow-[0_-10px_40px_rgba(0,0,0,0.8)]">
         <div className="flex items-center justify-around px-2 py-3">
           <MobileTabButton 
@@ -76,6 +78,7 @@ const Page = () => {
         </div>
       </nav>
 
+      {/* MAIN CONTENT */}
       <main className="flex-1 md:ml-64 relative w-full pb-24 md:pb-10">
         
         <div className="relative min-h-[90dvh] md:min-h-screen w-full flex items-center pt-10 md:pt-0">
@@ -84,13 +87,13 @@ const Page = () => {
             <div className="flex flex-col items-center lg:items-start justify-center p-6 md:p-8 lg:pl-16 backdrop-blur-[2px]">
               <div className="flex items-center gap-2 text-[10px] md:text-xs text-red-500 font-bold tracking-widest uppercase mb-4 animate-pulse">
                 <span className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]" />
-                System Active • Supply Chain Audit Protocol
+                System Active • Initialization Protocol[cite: 138]
               </div>
 
               <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight leading-none uppercase text-center lg:text-left transition-all">
-                WEEK 02: <br />
+                WEEK 01: <br />
                 <span className="text-green-400 flex gap-2 md:gap-3 items-center justify-center lg:justify-start mt-2 drop-shadow-[0_0_10px_rgba(74,222,128,0.2)]">
-                  THE PLASTIC BOMB
+                  WELCOME TO THE CHAOS[cite: 138]
                   <TriangleAlert className="text-red-500 fill-red-500/20 animate-pulse w-8 h-8 md:w-9 md:h-9 shrink-0" />
                 </span>
               </h1>
@@ -105,7 +108,7 @@ const Page = () => {
                     Operational Dashboard
                   </h3>
                   <p className="text-sm text-gray-400 leading-relaxed font-medium mb-6">
-                    Access Life Cycle Assessments, evaluate Scope emissions data, and manage critical supply chain interventions assigned by the CSCO.
+                    Access intelligence files, evaluate cross-functional metrics, and manage tasks assigned directly by the executive board below.
                   </p>
 
                   <div className="border-t border-white/5 pt-4 mb-5">
@@ -113,12 +116,12 @@ const Page = () => {
                       Current Objective
                     </span>
                     <p className="text-xs text-gray-500 font-medium">
-                      Quantify environmental hotspots, establish GHG baselines, and engineer circular packaging interventions. Initiate audit.
+                      Analyze metrics and stabilize baseline operations. Let's start.
                     </p>
                   </div>
 
                   <button className="w-full flex items-center justify-center gap-2 border border-green-500/30 bg-gradient-to-r from-green-950/40 to-emerald-900/40 hover:from-green-900/40 hover:to-emerald-800/40 rounded-xl py-3.5 text-xs text-green-300 hover:text-white font-bold tracking-wider uppercase transition-all duration-200 active:scale-[0.99]">
-                    <span className="tracking-wider">Initiate Supply Chain Audit</span>
+                    <span className="tracking-wider">Start Operation Adventure</span>
                     <span className="text-green-400 group-hover:translate-x-0.5 transition-transform">→</span>
                   </button>
                 </div>
@@ -141,15 +144,16 @@ const Page = () => {
           </div>
         </div>
 
+        {/* PRIYA EMAIL BRIEFING INTERACTIVE INTERFACE BLOCK */}
         <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24">
           <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start justify-center">
             
             <div className="shrink-0 relative group mt-2">
               <div className="absolute inset-0 bg-cyan-500/40 blur-2xl rounded-full opacity-70" />
               <img
-                src="/vikram.png"
+                src="/priya.png"
                 className="w-40 sm:w-48 md:w-56 lg:w-64 h-auto relative z-10 drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] object-contain transition-transform duration-500 hover:scale-105"
-                alt="Vikram Shah"
+                alt="Priya Nair"
               />
             </div>
 
@@ -162,8 +166,8 @@ const Page = () => {
                   <Mail size={16} className="text-red-400 drop-shadow-[0_0_6px_rgba(239,68,68,0.4)]" />
                   <div className="tracking-wide">
                     <span className="text-gray-500 font-semibold">FROM:</span>{" "}
-                    <span className="text-white font-bold font-sans">Vikram Shah</span>{" "}
-                    <span className="text-gray-400 text-[10px] md:text-[11px]">(Chief Supply Chain Officer, Sprint)</span>
+                    <span className="text-white font-bold font-sans">Priya Nair</span>{" "}
+                    <span className="text-gray-400 text-[10px] md:text-[11px]">(Co-founder & COO, Sprint)[cite: 141]</span>
                   </div>
                 </div>
                 <span className="bg-red-950/40 text-red-400 font-black tracking-widest uppercase text-[9px] px-2 py-0.5 rounded border border-red-500/20">
@@ -173,11 +177,11 @@ const Page = () => {
 
               <div className="mb-4 text-xs flex items-center gap-1.5">
                 <span className="text-gray-600 font-bold shrink-0">SUBJECT:</span>
-                <span className="text-gray-200 font-bold tracking-wide truncate">Code Red — SnackCo Ultimatum.</span>
+                <span className="text-gray-200 font-bold tracking-wide truncate">You're Hired. Here's the Situation.[cite: 141]</span>
               </div>
 
               <p className="text-sm md:text-base text-gray-300 leading-relaxed font-sans pl-3.5 border-l-2 border-red-500/30 bg-gradient-to-r from-red-500/[0.01] to-transparent py-1 pr-1">
-                SnackCo just gave us exactly 60 days to fix our plastic packaging, or they pull their entire product line from our dark stores. I need hard, verifiable data on our footprint and real, deployable solutions. Do not give me wishful thinking or greenwashed PR.
+                Welcome to the team. Sprint is bleeding money, and GreenBridge Capital blocked our ₹800 Cr Series B because of our ESG metrics.[cite: 142] I need your consulting pod to figure out what we are actually dealing with.[cite: 143] Start by understanding our business inside and out. Let's talk today.[cite: 144]
               </p>
             </div>
 
@@ -185,7 +189,7 @@ const Page = () => {
         </div>
 
         <div className="w-full relative z-20 bg-black">
-          <VikramPage />
+          <PriyaPage />
         </div>
 
       </main>
