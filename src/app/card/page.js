@@ -1,226 +1,78 @@
-"use client";
+import { Heart, Star, ChevronRight } from "lucide-react";
 
-import { useRef, useCallback } from "react";
-
-export default function TiltCard() {
-  const cardRef = useRef(null);
-  const shineRef = useRef(null);
-  const glareRef = useRef(null);
-  const animRef = useRef(0);
-  const stateRef = useRef({
-    currentRotX: 0,
-    currentRotY: 0,
-    targetRotX: 0,
-    targetRotY: 0,
-    isHovering: false,
-  });
-
-  const lerp = (a, b, t) => a + (b - a) * t;
-
-  const startAnimation = useCallback(() => {
-    const animate = () => {
-      const s = stateRef.current;
-      s.currentRotX = lerp(s.currentRotX, s.targetRotX, 0.12);
-      s.currentRotY = lerp(s.currentRotY, s.targetRotY, 0.12);
-
-      if (cardRef.current) {
-        const scale = s.isHovering ? 1.04 : 1;
-        cardRef.current.style.transform = `rotateX(${s.currentRotX}deg) rotateY(${s.currentRotY}deg) scale3d(${scale}, ${scale}, 1)`;
-      }
-      animRef.current = requestAnimationFrame(animate);
-    };
-    animRef.current = requestAnimationFrame(animate);
-  }, []);
-
-  const stopAnimation = useCallback(() => {
-    if (animRef.current) cancelAnimationFrame(animRef.current);
-  }, []);
-
-  const handleMouseMove = useCallback((e) => {
-    if (!cardRef.current || !shineRef.current || !glareRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    const dx = (e.clientX - cx) / (rect.width / 2);
-    const dy = (e.clientY - cy) / (rect.height / 2);
-
-    stateRef.current.targetRotY = dx * 8;
-    stateRef.current.targetRotX = -dy * 6;
-
-    const px = ((e.clientX - rect.left) / rect.width) * 100;
-    const py = ((e.clientY - rect.top) / rect.height) * 100;
-
-    shineRef.current.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.04) 40%, transparent 70%)`;
-    shineRef.current.style.opacity = "1";
-
-    glareRef.current.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 60%)`;
-    glareRef.current.style.opacity = "1";
-
-    cardRef.current.style.borderColor = `rgba(255,255,255,${0.1 + Math.abs(dx) * 0.2 + Math.abs(dy) * 0.15})`;
-  }, []);
-
-  const handleMouseEnter = useCallback(() => {
-    stateRef.current.isHovering = true;
-    startAnimation();
-  }, [startAnimation]);
-
-  const handleMouseLeave = useCallback(() => {
-    const s = stateRef.current;
-    s.isHovering = false;
-    s.targetRotX = 0;
-    s.targetRotY = 0;
-
-    if (shineRef.current) shineRef.current.style.opacity = "0";
-    if (glareRef.current) glareRef.current.style.opacity = "0";
-    if (cardRef.current) cardRef.current.style.borderColor = "rgba(255,255,255,0.12)";
-  }, []);
-
+export default function DestinationCard() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "100vh",
-        perspective: "1000px",
-        backgroundColor: "transparent", 
-      }}
-    >
-      {/* Card - EVENT LISTENERS MOVED HERE */}
-      <div
-        ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        style={{
-          width: "320px",
-          height: "420px",
-          borderRadius: "20px",
-          position: "relative",
-          transformStyle: "preserve-3d",
-          transition: "box-shadow 0.2s ease",
-          cursor: "pointer",
-          background: "linear-gradient(145deg, #1a1a2e, #16213e, #0f3460)",
-          border: "1px solid rgba(255,255,255,0.12)",
-          overflow: "hidden",
-          willChange: "transform",
-        }}
-      >
-        {/* Background circles */}
-        <div style={{ position: "absolute", inset: 0, zIndex: 1, overflow: "hidden", borderRadius: "20px" }}>
-          <div style={{ position: "absolute", width: 260, height: 260, borderRadius: "50%", background: "#7c3aed", opacity: 0.08, top: -80, right: -60 }} />
-          <div style={{ position: "absolute", width: 180, height: 180, borderRadius: "50%", background: "#3b82f6", opacity: 0.08, bottom: 40, left: -50 }} />
-          <div style={{ position: "absolute", width: 120, height: 120, borderRadius: "50%", background: "#06b6d4", opacity: 0.06, bottom: 120, right: 20 }} />
-        </div>
-
-        {/* Shine layer */}
-        <div
-          ref={shineRef}
-          style={{
-            position: "absolute",
-            inset: 0,
-            borderRadius: "20px",
-            pointerEvents: "none",
-            zIndex: 2,
-            opacity: 0,
-            transition: "opacity 0.1s",
-          }}
+    <div className="flex items-center justify-center min-h-screen z-100 p-8">
+      {/* MAIN CARD CONTAINER 
+        Adjust width (w-[320px]) and height (h-[420px]) as needed.
+      */}
+      <div className="relative w-[340px] h-[460px] rounded-[32px] overflow-hidden shadow-2xl group cursor-pointer">
+        
+        {/* Background Image */}
+        <img
+          src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=1000&auto=format&fit=crop"
+          alt="Rio de Janeiro"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
 
-        {/* Glare layer */}
-        <div
-          ref={glareRef}
-          style={{
-            position: "absolute",
-            inset: 0,
-            borderRadius: "20px",
-            pointerEvents: "none",
-            zIndex: 3,
-            opacity: 0,
-            transition: "opacity 0.1s",
-          }}
-        />
+        {/* Dark Gradient Overlay (Makes text readable) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
 
-        {/* Content */}
-        <div
-          style={{
-            position: "relative",
-            zIndex: 4,
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            padding: "2rem",
-            boxSizing: "border-box",
-          }}
-        >
-          {/* Top row */}
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "auto" }}>
-            {/* Logo */}
-            <div style={{
-              width: 42, height: 42, borderRadius: 12,
-              background: "rgba(255,255,255,0.12)",
-              border: "1px solid rgba(255,255,255,0.18)",
-              display: "flex", alignItems: "center", justifyContent: "center"
-            }}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </div>
+        {/* Top Right Heart Button (Glass Effect) */}
+        <button className="absolute top-5 right-5 w-11 h-11 rounded-full border border-white/30 bg-white/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
+          <Heart size={20} strokeWidth={1.5} />
+        </button>
 
-            {/* Chip */}
-            <div style={{
-              width: 44, height: 34, borderRadius: 6,
-              background: "linear-gradient(135deg, #d4a843, #f0c96a, #b8932e)",
-              position: "relative", overflow: "hidden"
-            }}>
-              {[0, 1, 2].map(i => (
-                <div key={i} style={{
-                  position: "absolute", height: 1,
-                  background: "rgba(0,0,0,0.2)",
-                  left: 4, right: 4,
-                  top: `${6 + i * 10}px`
-                }} />
-              ))}
-              <div style={{ position: "absolute", width: 1, top: 4, bottom: 4, left: "50%", background: "rgba(0,0,0,0.2)" }} />
-            </div>
-          </div>
-
-          {/* Card number */}
-          <div style={{
-            fontFamily: "'Courier New', monospace",
-            fontSize: 16,
-            letterSpacing: 3,
-            color: "rgba(255,255,255,0.75)",
-            marginBottom: "1.2rem"
-          }}>
-            •••• •••• •••• 4291
-          </div>
-
-          {/* Bottom row */}
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
-            <div>
-              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1.5px", marginBottom: 4 }}>Card holder</div>
-              <div style={{ fontSize: 14, color: "rgba(255,255,255,0.9)", fontWeight: 500, letterSpacing: 1 }}>Alex Morgan</div>
-              <div style={{ marginTop: 10 }}>
-                <div style={{ fontSize: 10, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "1.5px", marginBottom: 4 }}>Expires</div>
-                <div style={{ fontSize: 14, color: "rgba(255,255,255,0.9)", fontWeight: 500, letterSpacing: 1 }}>12 / 27</div>
+        {/* Bottom Content Area */}
+        <div className="absolute bottom-0 w-full p-6 flex flex-col gap-5">
+          
+          {/* Text Information */}
+          <div>
+            <p className="text-white/80 text-sm font-medium mb-1 drop-shadow-md">
+              Brazil
+            </p>
+            <h2 className="text-3xl font-bold text-white tracking-tight mb-3 drop-shadow-lg">
+              Rio de Janeiro
+            </h2>
+            
+            {/* Ratings & Reviews */}
+            <div className="flex items-center gap-3 text-sm">
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white">
+                <Star size={14} className="fill-white text-white" />
+                <span className="font-semibold mt-0.5">5.0</span>
               </div>
-            </div>
-
-            {/* Network circles */}
-            <div style={{ display: "flex" }}>
-              <div style={{ width: 34, height: 34, borderRadius: "50%", background: "#eb5757", opacity: 0.85, marginRight: -12 }} />
-              <div style={{ width: 34, height: 34, borderRadius: "50%", background: "#f5a623", opacity: 0.75 }} />
+              <span className="text-white/70 drop-shadow-md">143 reviews</span>
             </div>
           </div>
+
+          {/* LIQUID GLASS "SEE MORE" BUTTON 
+            Uses backdrop-blur, semi-transparent white, and an inner shine effect.
+          */}
+          <button className="relative w-full h-16 rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/20 flex items-center px-2 shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden hover:bg-white/20 transition-all duration-300 active:scale-95 group/btn">
+            
+            {/* Liquid Shine Hover Effect */}
+            <div className="absolute inset-0 -translate-x-full group-hover/btn:animate-[shimmer_1s_forwards] bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 pointer-events-none" />
+            
+            {/* Centered Text */}
+            <span className="flex-1 text-center font-medium text-white text-lg tracking-wide pl-12 relative z-10">
+              See more
+            </span>
+            
+            {/* Arrow Button (Solid White) */}
+            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 relative z-10 shadow-md group-hover/btn:scale-105 transition-transform duration-300">
+              <ChevronRight size={24} className="text-black ml-0.5" />
+            </div>
+            
+          </button>
         </div>
       </div>
 
-      <p style={{ marginTop: "1.5rem", fontSize: 13, color: "rgba(255,255,255,0.35)", fontFamily: "sans-serif" }}>
-        Hover over the card
-      </p>
+      {/* Global Styles for the shimmer effect (Add to your globals.css if preferred) */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes shimmer {
+          100% { transform: translateX(100%); }
+        }
+      `}} />
     </div>
   );
 }

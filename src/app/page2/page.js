@@ -5,12 +5,10 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Card2Page from "../card2/page.js";
 
-// Register ScrollTrigger
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// 1. The Gold Tag Component with metallic shine on hover
 function GoldTag({ tagRef }) {
   const shineRef = useRef(null);
   const shineInnerRef = useRef(null);
@@ -23,11 +21,9 @@ function GoldTag({ tagRef }) {
     const shine = shineRef.current;
     const shineInner = shineInnerRef.current;
 
-    // Reset position to the left
     gsap.set(shine, { x: '-100%', opacity: 1 });
     gsap.set(shineInner, { opacity: 1 });
 
-    // Sweep the shine across
     gsap.to(shine, {
       x: '250%',
       duration: 0.85,
@@ -38,7 +34,6 @@ function GoldTag({ tagRef }) {
       },
     });
 
-    // Subtle scale pulse
     gsap.to(tagRef.current, {
       scale: 1.04,
       duration: 0.3,
@@ -55,17 +50,14 @@ function GoldTag({ tagRef }) {
       onMouseEnter={handleMouseEnter}
       style={{ cursor: 'pointer' }}
     >
-      {/* Outer Rim (The thick metallic border) */}
       <div
         className="relative rounded-[32px] p-[6px] shadow-[0_20px_40px_rgba(0,0,0,0.8)] transition-transform duration-500"
         style={{
           width: 'clamp(300px, 30vw, 400px)',
           height: 'clamp(180px, 15vw, 240px)',
           background: 'linear-gradient(135deg, #f8e597 0%, #d4af37 35%, #8a5a19 60%, #d4af37 80%, #f8e597 100%)',
-          // Outer rim glow on hover handled via CSS group
         }}
       >
-        {/* Outer glow ring — appears on hover via CSS */}
         <style>{`
           .gold-tag-outer:hover {
             box-shadow:
@@ -89,7 +81,6 @@ function GoldTag({ tagRef }) {
           }}
         />
 
-        {/* Inner Plate (The brushed metal surface) */}
         <div
           className="relative w-full h-full rounded-[26px] overflow-hidden flex items-center justify-center"
           style={{
@@ -98,7 +89,6 @@ function GoldTag({ tagRef }) {
             boxShadow: 'inset 0 0 15px rgba(138,90,25,0.8)',
           }}
         >
-          {/* Vertical brushed metal texture */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
@@ -118,11 +108,6 @@ function GoldTag({ tagRef }) {
             }}
           />
 
-          {/* ── METALLIC SHINE SWEEP ── */}
-          {/*
-            A wide angled gradient band that sweeps left-to-right on hover.
-            It simulates a "light reflection" moving across polished gold metal.
-          */}
           <div
             ref={shineRef}
             className="absolute inset-y-0 pointer-events-none"
@@ -132,14 +117,12 @@ function GoldTag({ tagRef }) {
               opacity: 0,
               zIndex: 20,
               transform: 'translateX(-100%)',
-              // The shine itself: a bright diagonal stripe
               background:
                 'linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.08) 30%, rgba(255,255,230,0.55) 45%, rgba(255,255,255,0.75) 50%, rgba(255,255,230,0.55) 55%, rgba(255,255,255,0.08) 70%, transparent 80%)',
               mixBlendMode: 'screen',
               filter: 'blur(1px)',
             }}
           >
-            {/* Secondary narrower core of the shine for extra "hot spot" */}
             <div
               ref={shineInnerRef}
               style={{
@@ -151,9 +134,7 @@ function GoldTag({ tagRef }) {
               }}
             />
           </div>
-          {/* ── END SHINE ── */}
 
-          {/* Rivets */}
           {[
             'top-4 left-4 md:top-5 md:left-5',
             'top-4 right-4 md:top-5 md:right-5',
@@ -173,7 +154,6 @@ function GoldTag({ tagRef }) {
             />
           ))}
 
-          {/* Engraved Text */}
           <h2
             className="relative z-10 font-sans font-black uppercase tracking-widest text-center leading-tight"
             style={{
@@ -194,7 +174,6 @@ function GoldTag({ tagRef }) {
   );
 }
 
-// 2. Main Section
 export default function CoolSection() {
   const sectionRef = useRef(null);
   const textBlockRef = useRef(null);
@@ -239,14 +218,12 @@ export default function CoolSection() {
   }, []);
 
   return (
-    <div className="relative z-20 w-full bg-transparent overflow-hidden text-white">
+    <div id="lets-make-things-cool" className="relative z-20 w-full bg-transparent overflow-hidden text-white">
       <section
         ref={sectionRef}
         className="flex flex-col max-w-7xl mx-auto py-20 px-4 md:px-8"
       >
-        {/* Header Wrapper */}
         <div className="flex items-center justify-center gap-4 md:gap-8 w-full mb-12">
-          {/* Left Line */}
           <div
             ref={leftLineRef}
             className="h-[2px] w-1/4 md:flex-grow rounded-full"
@@ -255,7 +232,6 @@ export default function CoolSection() {
             }}
           />
 
-          {/* Title Block */}
           <div
             ref={textBlockRef}
             className="flex flex-col justify-center items-center w-full min-w-max"
@@ -279,7 +255,6 @@ export default function CoolSection() {
             </p>
           </div>
 
-          {/* Right Line */}
           <div
             ref={rightLineRef}
             className="h-[2px] w-1/4 md:flex-grow rounded-full"
@@ -289,10 +264,8 @@ export default function CoolSection() {
           />
         </div>
 
-        {/* The Gold Tag */}
         <GoldTag tagRef={tagRef} />
 
-        {/* Your Grid Component */}
         <Card2Page />
       </section>
     </div>

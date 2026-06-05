@@ -1,8 +1,8 @@
 "use client";
+
 import React, { useEffect, useRef, useState } from "react";
-import { House, CalendarDays, Medal } from "lucide-react";
-import { Users } from "lucide-react";
-import DemoPage from "./demo/page.js"; // Adjust path if necessary
+import { House, CalendarDays, Medal, Users, ArrowDown, ExternalLink } from "lucide-react";
+import DemoPage from "./demo/page.js";
 import Page2 from "./page2/page.js";
 import Page3 from "./page3/page.js";
 import Page5 from "./page5/page.js";
@@ -10,12 +10,9 @@ import Page4 from "./page4/page.js";
 
 export default function SparkleBackground() {
   const canvasRef = useRef(null);
-
-  // State for the typing effect
   const [typedText, setTypedText] = useState("");
   const fullText = "SUMMER CAMP 2026";
 
-  // Typing Effect Logic
   useEffect(() => {
     let currentIndex = 0;
     let intervalId;
@@ -37,7 +34,6 @@ export default function SparkleBackground() {
     };
   }, []);
 
-  // Canvas Particle Logic
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -128,7 +124,7 @@ export default function SparkleBackground() {
     const init = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      particles = Array.from({ length: 200 }, () => new Particle(canvas.width, canvas.height));
+      particles = Array.from({ length: 150 }, () => new Particle(canvas.width, canvas.height));
       stationaryStars = Array.from({ length: 40 }, () => new StationaryStar(Math.random() * canvas.width, Math.random() * canvas.height));
     };
 
@@ -159,76 +155,18 @@ export default function SparkleBackground() {
     };
   }, []);
 
+  const scrollToSection = () => {
+    const targetSection = document.getElementById("lets-make-things-cool");
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <div className="relative min-h-screen w-full bg-[#050505]">
-      
-      {/* 1. Global Fixed Navigation Wrapper */}
-      <header className="fixed top-0 left-0 w-full z-[100] h-[80px] flex justify-between items-start px-4 md:px-8 pointer-events-none">
-        
-        {/* Left: Logo (flex-1 ensures it balances the right side perfectly) */}
-        <div className="flex-1 flex items-center h-full pointer-events-auto">
-          <img
-            src="./logo.png"
-            alt="Camp Logo"
-            className="h-8 md:h-12 w-auto object-contain drop-shadow-md"
-          />
-          <h1 className="text-2xl md:text-3xl font-bold text-white ml-3 hidden sm:block">CSI</h1>
-        </div>
-        
-        {/* Center: Main Nav Background (shrink-0 keeps it sized to its content) */}
-        <nav
-          className="shrink-0 pointer-events-auto px-6 md:px-16 h-full
-          bg-[#050505]/80 backdrop-blur-md rounded-b-[60px] flex items-center justify-center
-          border-b-8 border-l-2 border-r-2 
-          border-transparent [background-clip:padding-box,border-box] [background-origin:padding-box,border-box]
-          bg-[linear-gradient(#050505,#050505),linear-gradient(to_bottom,rgba(255,255,255,0.4),rgba(255,255,255,0.3),rgba(0,0,0,0.5))]
-          shadow-[0_10px_30px_rgba(46,204,113,0.2),inset_0_2px_4px_rgba(255,255,255,0.3)]"
-        >
-          <div className="flex items-center justify-center gap-[24px] md:gap-[60px] text-lg md:text-xl">
-            <button className="text-white hover:text-green-400 transition-colors drop-shadow-md flex gap-2 items-center justify-center">
-              <House size={24} />
-              <span className="hidden lg:block">Home</span>
-            </button>
-
-            <button className="text-white hover:text-green-400 transition-colors drop-shadow-md flex gap-2 items-center justify-center">
-              <CalendarDays size={24} />
-              <span className="hidden lg:block">Weeks</span>
-            </button>
-
-            <button className="text-white hover:text-green-400 transition-colors drop-shadow-md flex gap-2 items-center justify-center">
-              <Medal size={24} />
-              <span className="hidden lg:block">Leaderboard</span>
-            </button>
-          </div>
-        </nav>
-
-        {/* Right: Action Button */}
-        <div className="flex-1 flex items-center justify-end h-full pointer-events-auto">
-          <button 
-            className="group relative px-4 md:px-6 py-2 md:py-2.5 rounded-xl md:rounded-full text-sm md:text-base font-bold text-gray-100 transition-all duration-300
-              border-t border-l border-r border-b-4 border-transparent
-              [background-clip:padding-box,border-box] [background-origin:padding-box,border-box]
-              bg-[linear-gradient(#1a1f26,#0d1117),linear-gradient(to_bottom,rgba(255,255,255,0.4),rgba(255,255,255,0.05),rgba(0,0,0,0.8))]
-              shadow-[0_5px_15px_rgba(0,0,0,0.6),inset_0_1px_2px_rgba(255,255,255,0.3)]
-              hover:scale-105 hover:shadow-[0_0_20px_rgba(46,204,113,0.4),inset_0_1px_2px_rgba(255,255,255,0.4)]
-              active:scale-95 flex items-center gap-2"
-          >
-            {/* Glowing Green Status Dot */}
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_#22c55e]" />
-            
-            <span className="hidden xl:block tracking-wide">Meet Characters</span>
-            <span className="hidden sm:block xl:hidden tracking-wide">Characters</span>
-            
-            {/* Mobile Icon Fallback */}
-            <Users size={18} className="sm:hidden text-green-400 group-hover:text-white transition-colors" />
-          </button>
-        </div>
-      </header>
-
-      {/* 2. Hero Background Layer (Aura + Canvas) - Kept fixed to viewport */}
+    <div className="relative min-h-screen w-full bg-[#050505] overflow-x-hidden flex flex-col">
       <div className="fixed inset-0 pointer-events-none z-0 h-screen overflow-hidden">
         <div
-          className="absolute top-[10%] right-[5%] w-[600px] h-[600px] rounded-full blur-[120px]"
+          className="absolute top-[10%] right-[5%] w-[300px] h-[300px] sm:w-[450px] sm:h-[450px] md:w-[600px] md:h-[600px] rounded-full blur-[80px] sm:blur-[120px]"
           style={{
             background: "radial-gradient(circle, rgba(46, 204, 113, 0.12) 0%, transparent 70%)",
           }}
@@ -236,66 +174,68 @@ export default function SparkleBackground() {
         <canvas ref={canvasRef} className="block w-full h-full" />
       </div>
 
-      {/* 3. Main Hero Content Layer */}
-      <main className="relative z-10 pt-[100px] w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 md:px-12 min-h-[calc(100vh-80px)]">
-        {/* Left Column: Text */}
-        <div className="w-full md:w-[55%] h-auto flex flex-col justify-center py-12 md:py-0">
-          <p className="text-gray-400 tracking-[0.3em] uppercase text-sm md:text-base mb-4 ml-1">
+      <main className="relative z-10 pt-[100px] md:pt-[120px] pb-12 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between px-6 md:px-12 min-h-[calc(100vh-100px)] gap-10 md:gap-0 flex-grow">
+        <div className="w-full md:w-[55%] flex flex-col justify-center text-center md:text-left items-center md:items-start">
+          <p className="text-gray-400 tracking-[0.25em] sm:tracking-[0.3em] uppercase text-xs sm:text-sm md:text-base mb-3 md:mb-4">
             Club of
           </p>
 
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-[1.1] tracking-tight">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.1] tracking-tight">
             SUSTAINABILITY
           </h1>
 
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mt-2 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600 drop-shadow-[0_0_20px_rgba(76,217,100,0.3)]">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600 drop-shadow-[0_0_20px_rgba(76,217,100,0.3)]">
             & INNOVATION
           </h1>
 
-          <div className="flex items-center gap-6 mt-12 w-full max-w-md">
+          <div className="flex items-center gap-4 mt-6 sm:mt-10 w-full max-w-[280px] sm:max-w-md">
             <div className="h-[2px] flex-grow bg-gradient-to-r from-transparent to-gray-600"></div>
-            <h2 className="text-2xl md:text-3xl font-light tracking-[0.2em] text-gray-300 uppercase">
+            <h2 className="text-lg sm:text-2xl md:text-3xl font-light tracking-[0.15em] sm:tracking-[0.2em] text-gray-300 uppercase whitespace-nowrap">
               Presents
             </h2>
             <div className="h-[2px] flex-grow bg-gradient-to-l from-transparent to-gray-600"></div>
           </div>
 
-          {/* Typing Effect Container */}
-          <h3 className="text-4xl md:text-6xl font-black text-white mt-8 italic drop-shadow-xl flex items-center min-h-[3rem] md:min-h-[4rem]">
+          <h3 className="text-2xl sm:text-4xl md:text-6xl font-black text-white mt-6 sm:mt-8 italic drop-shadow-xl flex items-center min-h-[2.5rem] sm:min-h-[3.5rem] md:min-h-[4rem]">
             {typedText}
-            <span className="inline-block w-[6px] md:w-[10px] h-[35px] md:h-[50px] bg-green-400 ml-2 animate-pulse rounded-sm"></span>
+            <span className="inline-block w-[3px] sm:w-[5px] md:w-[8px] h-[24px] sm:h-[36px] md:h-[48px] bg-green-400 ml-2 animate-pulse rounded-sm"></span>
           </h3>
 
           <button
-            className="
-              mt-12 w-fit px-8 py-4 text-white font-bold text-xl rounded-full transition-all duration-300
-              border-b-4 border-l-2 border-r-2 border-transparent 
-              [background-clip:padding-box,border-box] [background-origin:padding-box,border-box]
-              bg-[linear-gradient(#22c55e,#22c55e),linear-gradient(to_bottom,rgba(255,255,255,0.6),rgba(255,255,255,0.1),rgba(0,0,0,0.4))]
-              shadow-[0_10px_20px_rgba(46,204,113,0.3),inset_0_2px_4px_rgba(255,255,255,0.4)]
-              hover:scale-105 hover:shadow-[0_0_30px_rgba(46,204,113,0.5)] active:scale-95
-            "
+            onClick={scrollToSection}
+            className="group flex items-center justify-center gap-3 mt-8 sm:mt-12 w-fit px-6 sm:px-8 py-3 sm:py-4 text-white font-bold text-sm sm:text-lg md:text-xl rounded-full transition-all duration-300 border-b-4 border-l-2 border-r-2 border-transparent [background-clip:padding-box,border-box] [background-origin:padding-box,border-box] bg-[linear-gradient(#22c55e,#22c55e),linear-gradient(to_bottom,rgba(255,255,255,0.6),rgba(255,255,255,0.1),rgba(0,0,0,0.4))] shadow-[0_10px_20px_rgba(46,204,113,0.3),inset_0_2px_4px_rgba(255,255,255,0.4)] hover:scale-105 hover:shadow-[0_0_30px_rgba(46,204,113,0.5)] active:scale-95"
           >
-            Start Adventure 🚀
+            <span>Read info before starting</span>
+            <ArrowDown className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-transform duration-300 group-hover:translate-y-1.5" />
           </button>
         </div>
 
-        {/* Right Column: Vector Image */}
-        <div className="w-full md:w-[45%] flex items-center justify-center relative py-12 md:py-0">
-          <div className="absolute w-[300px] h-[300px] md:w-[400px] md:h-[400px] bg-green-500/20 blur-[100px] rounded-full z-0"></div>
+        <div className="w-full md:w-[45%] flex items-center justify-center relative">
+          <div className="absolute w-[150px] h-[150px] sm:w-[250px] sm:h-[250px] md:w-[400px] md:h-[400px] bg-green-500/20 blur-[60px] sm:blur-[100px] rounded-full z-0"></div>
           <img
             src="./summer.png"
             alt="Summer Camp Vector"
-            className="w-full max-w-[400px] md:max-w-[500px] object-contain relative z-10 drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:translate-y-[-10px] transition-transform duration-500"
+            className="w-[65%] max-w-[220px] sm:w-[70%] sm:max-w-[320px] md:max-w-[500px] md:w-full object-contain relative z-10 drop-shadow-[0_15px_35px_rgba(0,0,0,0.5)] md:hover:-translate-y-3 transition-transform duration-500"
           />
         </div>
       </main>
 
-      <Page2 />
-      <Page3 />
-      <Page5 />
-      <Page4 />
-      
+      <div className="relative z-10">
+        <Page2 />
+        <Page3 />
+        <Page5 />
+        <Page4 />
+      </div>
+
+      <footer className="relative z-10 w-full mt-auto py-24 px-6 bg-transparent flex flex-col justify-center items-center">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white text-center uppercase tracking-[0.15em] leading-snug drop-shadow-2xl">
+          MADE WITH LOVE ❤️
+          <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600 mt-2 block">
+            BY CSI WEB TEAM
+          </span>
+        </h2>
+      </footer>
     </div>
   );
 }

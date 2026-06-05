@@ -1,0 +1,141 @@
+/* Main gallery container with flex-wrap for mobile stacking */
+.card-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 4rem 1rem;
+  background-color: #050505;
+  min-height: 100vh;
+}
+
+/* Handles 3D perspective and prevents mobile overflow */
+.perspective-container {
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+}
+
+/* Card base scales automatically up to 320px */
+.metallic-card {
+  width: 100%;
+  height: 480px;
+  border-radius: 20px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease;
+  background: linear-gradient(135deg, #2a2a2a 0%, #5a5a5a 25%, #1f1f1f 50%, #4a4a4a 75%, #111111 100%);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), inset 0 0 0 2px rgba(255, 255, 255, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+/* Smooth snap-back when mouse leaves */
+.metallic-card.resetting {
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Dynamic Glare Effect */
+.glare {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 50%);
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: overlay;
+}
+
+/* Wraps the 3D popping elements */
+.card-content {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Pushes the character image out in 3D space */
+.character-img {
+  position: absolute;
+  bottom: 140px; 
+  height: 380px;
+  object-fit: contain;
+  transform: translateZ(90px); 
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.7));
+  pointer-events: none;
+}
+
+/* Pushes the info box out in 3D space */
+.info-box {
+  transform: translateZ(50px); 
+  text-align: center;
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(8px);
+  padding: 20px;
+  border-radius: 16px;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
+
+/* Typography styles */
+.info-name {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin: 0 0 4px 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+}
+
+.info-role {
+  color: #22d3ee;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  letter-spacing: 1px;
+}
+
+.info-specialty {
+  color: #a1a1aa;
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Mobile Responsiveness for small screens */
+@media (max-width: 768px) {
+  .card-gallery {
+    gap: 80px; 
+    padding: 6rem 1rem;
+  }
+  .metallic-card {
+    height: 400px;
+  }
+  .character-img {
+    height: 320px;
+    bottom: 120px;
+    transform: translateZ(70px);
+  }
+  .info-box {
+    padding: 16px;
+    transform: translateZ(40px);
+  }
+  .info-name {
+    font-size: 1.25rem;
+  }
+  .info-role {
+    font-size: 0.85rem;
+  }
+  .info-specialty {
+    font-size: 0.75rem;
+  }
+}

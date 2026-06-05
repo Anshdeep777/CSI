@@ -2,15 +2,12 @@
 
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
+import { File } from "lucide-react";
 
-const traders = [
-  { rank: 1, name: "Alex Johnson", rollNo: "CS2021001", country: "Canada", countryFlag: "🇨🇦", profit: "$12,450", winRate: "78%", avatar: "🧑‍💼" },
-  { rank: 2, name: "Maria Chen", rollNo: "CS2021002", country: "USA", countryFlag: "🇺🇸", profit: "$9,820", winRate: "72%", avatar: "👩‍💻" },
-  { rank: 3, name: "Priya Patel", rollNo: "CS2021003", country: "Singapore", countryFlag: "🇸🇬", profit: "$8,310", winRate: "69%", avatar: "👩‍🎓" },
-  { rank: 4, name: "Omar Hassan", rollNo: "CS2021004", country: "Canada", countryFlag: "🇨🇦", profit: "$7,100", winRate: "65%", avatar: "🧑‍🎓" },
-  { rank: 5, name: "Yuki Tanaka", rollNo: "CS2021005", country: "Japan", countryFlag: "🇯🇵", profit: "$6,540", winRate: "61%", avatar: "🧑‍💻" },
-  { rank: 6, name: "Sophie Müller", rollNo: "CS2021006", country: "Germany", countryFlag: "🇩🇪", profit: "$5,980", winRate: "58%", avatar: "👩‍🏫" },
-  { rank: 7, name: "Ravi Kumar", rollNo: "CS2021007", country: "India", countryFlag: "🇮🇳", profit: "$5,320", winRate: "55%", avatar: "🧑‍🔬" },
+const students = [
+  { rank: 1, name: "1st Position", rollNo: "SAMPLE-01" },
+  { rank: 2, name: "2nd Position", rollNo: "SAMPLE-02" },
+  { rank: 3, name: "3rd Position", rollNo: "SAMPLE-03" },
 ];
 
 const podiumColors = {
@@ -43,20 +40,9 @@ const podiumColors = {
   },
 };
 
-const avatarBgs = [
-  "bg-gradient-to-br from-yellow-500 to-orange-600",
-  "bg-gradient-to-br from-gray-400 to-gray-600",
-  "bg-gradient-to-br from-orange-500 to-red-700",
-  "bg-gradient-to-br from-pink-500 to-rose-600",
-  "bg-gradient-to-br from-blue-500 to-cyan-600",
-  "bg-gradient-to-br from-red-500 to-pink-600",
-  "bg-gradient-to-br from-amber-500 to-yellow-600",
-];
-
 const FIREWORK_COLORS = ["#fbbf24", "#c084fc", "#34d399", "#f472b6", "#60a5fa", "#ffffff"];
 
 export default function LeaderboardPage() {
-  const [selected, setSelected] = useState([]);
   const [mounted, setMounted] = useState(false);
   
   const containerRef = useRef(null);
@@ -209,16 +195,10 @@ export default function LeaderboardPage() {
     }
   }
 
-  const toggle = (rank) => {
-    setSelected((prev) =>
-      prev.includes(rank) ? prev.filter((r) => r !== rank) : [...prev, rank]
-    );
-  };
-
-  const top3 = [traders[1], traders[0], traders[2]]; 
+  const top3 = [students[1], students[0], students[2]]; 
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#06060c] text-white font-sans overflow-x-hidden relative opacity-100">
+    <div ref={containerRef} className="min-h-screen bg-[#06060c] text-white font-sans overflow-x-hidden relative opacity-100 py-10">
       
       <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-[100]" style={{ width: '100%', height: '100%' }} />
 
@@ -251,19 +231,18 @@ export default function LeaderboardPage() {
         ))}
       </div>
 
-      {/* Podium Section */}
       <div className="relative z-10 pt-16 pb-0 perspective-[1000px]">
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-indigo-950/40 to-transparent pointer-events-none" />
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-1.5 bg-indigo-500/30 blur-md rounded-full" />
 
         <div className="flex justify-center items-end gap-4 md:gap-8 px-4 pb-0">
-          {top3.map((trader, index) => {
-            const style = podiumColors[trader.rank];
-            const isFirst = trader.rank === 1;
+          {top3.map((student, index) => {
+            const style = podiumColors[student.rank];
+            const isFirst = student.rank === 1;
             
             return (
               <div
-                key={trader.rank}
+                key={student.rank}
                 ref={(el) => (podiumRefs.current[index] = el)}
                 onMouseEnter={() => handleCardHover(index, true)}
                 onMouseLeave={() => handleCardHover(index, false)}
@@ -274,7 +253,6 @@ export default function LeaderboardPage() {
                   transformStyle: "preserve-3d"
                 }}
               >
-                {/* Inner Dark Engraved Card */}
                 <div 
                   className={`w-full h-full rounded-[10px] bg-gradient-to-b ${style.metalInner} flex flex-col items-center relative overflow-hidden`}
                   style={{
@@ -283,51 +261,33 @@ export default function LeaderboardPage() {
                     boxShadow: "inset 0px 4px 15px rgba(0,0,0,0.8), inset 0px 1px 1px rgba(255,255,255,0.1)"
                   }}
                 >
-                  {/* Subtle metal scratch overlay pattern */}
                   <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/brushed-alum.png')] pointer-events-none mix-blend-overlay"></div>
 
-                  <div className="text-center mb-4 relative z-10">
+                  <div className="text-center mb-6 relative z-10">
                     <div className="text-3xl mb-1 filter drop-shadow-md">{style.crown}</div>
                     
-                    {/* Deep Engraved Text Effect */}
                     <div 
                       className={`font-black ${isFirst ? "text-3xl" : "text-xl"} ${style.engraveColor} uppercase tracking-widest`}
                       style={{
                         textShadow: "1px 1px 1px rgba(255,255,255,0.1), -1px -1px 2px rgba(0,0,0,0.9)"
                       }}
                     >
-                      {trader.rank === 1 ? "1st" : trader.rank === 2 ? "2nd" : "3rd"}
+                      {student.rank === 1 ? "1st" : student.rank === 2 ? "2nd" : "3rd"}
                     </div>
                   </div>
 
-                  {/* Avatar inset container */}
-                  <div className="relative mb-5 z-10">
-                    <div className="absolute -inset-1 bg-black/60 rounded-full blur-[2px]"></div>
-                    <div
-                      className={`${avatarBgs[trader.rank - 1]} rounded-full flex items-center justify-center shadow-[inset_0_2px_4px_rgba(255,255,255,0.3),0_4px_10px_rgba(0,0,0,0.5)] border-2 border-black/40 relative z-10`}
-                      style={{ 
-                        width: isFirst ? 80 : 64, 
-                        height: isFirst ? 80 : 64,
-                        fontSize: isFirst ? "2.5rem" : "2rem"
-                      }}
-                    >
-                      {trader.avatar}
-                    </div>
-                  </div>
-
-                  {/* Engraved Details */}
                   <div className="text-center w-full px-2 relative z-10">
                     <div 
                       className={`font-bold tracking-wider uppercase text-gray-400 ${isFirst ? "text-[13px]" : "text-[11px]"}`}
                       style={{ textShadow: "1px 1px 1px rgba(255,255,255,0.05), -1px -1px 1px rgba(0,0,0,0.8)" }}
                     >
-                      {trader.name}
+                      {student.name}
                     </div>
                     <div 
-                      className="text-[9px] text-gray-600 mt-1 font-mono tracking-[0.2em]"
+                      className="text-[9px] text-gray-600 mt-2 font-mono tracking-[0.2em]"
                       style={{ textShadow: "1px 1px 0px rgba(255,255,255,0.03), -1px -1px 1px rgba(0,0,0,0.8)" }}
                     >
-                      {trader.rollNo}
+                      {student.rollNo}
                     </div>
                   </div>
                 </div>
@@ -345,119 +305,54 @@ export default function LeaderboardPage() {
         />
       </div>
 
-      {/* Table Section */}
       <div className="relative z-10 mx-4 md:mx-10 mb-24 mt-4">
         <div ref={tableRef} className="rounded-2xl border border-white/5 bg-[#111118]/80 backdrop-blur-xl shadow-[0_15px_50px_rgba(0,0,0,0.6)] overflow-hidden opacity-0">
           <div className="flex items-center gap-4 px-6 py-5 border-b border-white/5 bg-white/[0.01]">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-800 flex items-center justify-center text-xl shadow-[inset_0_2px_4px_rgba(255,255,255,0.2)]">
               🏆
             </div>
-            <span className="text-xl font-bold tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">
-              Top Traders
-            </span>
+            <File className="w-7 h-7 text-gray-400" />
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-white/5 text-gray-500 text-[11px] uppercase tracking-widest bg-black/40">
-                  <th className="pl-6 pr-4 py-5 text-left font-semibold w-12">
-                    <input
-                      type="checkbox"
-                      className="w-4 h-4 rounded border-gray-700 bg-black/50 accent-indigo-500"
-                    />
-                  </th>
-                  <th className="px-4 py-5 text-left font-semibold">Rank</th>
+                  <th className="pl-6 pr-4 py-5 text-left font-semibold">Rank</th>
                   <th className="px-4 py-5 text-left font-semibold">Name</th>
                   <th className="px-4 py-5 text-left font-semibold">Roll No</th>
-                  <th className="px-4 py-5 text-left font-semibold">Country</th>
-                  <th className="px-4 py-5 text-left font-semibold">Profit</th>
-                  <th className="px-4 py-5 text-left font-semibold">Win Rate</th>
-                  <th className="px-4 py-5 text-left font-semibold">Performance</th>
+                  
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
-                {traders.map((trader, index) => {
-                  const isSelected = selected.includes(trader.rank);
-                  const isTop3 = trader.rank <= 3;
+                {students.map((student, index) => {
                   return (
                     <tr
-                      key={trader.rank}
+                      key={student.rank}
                       ref={(el) => (rowRefs.current[index] = el)}
-                      onClick={() => toggle(trader.rank)}
-                      className={`cursor-pointer transition-colors opacity-0 ${
-                        isSelected ? "bg-indigo-900/20" : "hover:bg-white/[0.02]"
-                      }`}
+                      className="transition-colors opacity-0 hover:bg-white/[0.02]"
                     >
                       <td className="pl-6 pr-4 py-4">
-                        <input
-                          type="checkbox"
-                          checked={isSelected}
-                          onChange={() => toggle(trader.rank)}
-                          className="w-4 h-4 rounded border-gray-700 bg-black/50 accent-indigo-500 cursor-pointer"
-                          onClick={(e) => e.stopPropagation()}
-                        />
-                      </td>
-                      <td className="px-4 py-4">
                         <span
                           className={`font-black text-lg ${
-                            trader.rank === 1
+                            student.rank === 1
                               ? "text-yellow-500 drop-shadow-[0_0_8px_rgba(234,179,8,0.3)]"
-                              : trader.rank === 2
+                              : student.rank === 2
                               ? "text-gray-400 drop-shadow-[0_0_8px_rgba(156,163,175,0.3)]"
-                              : trader.rank === 3
+                              : student.rank === 3
                               ? "text-orange-500 drop-shadow-[0_0_8px_rgba(249,115,22,0.3)]"
                               : "text-gray-600"
                           }`}
                         >
-                          #{String(trader.rank).padStart(2, "0")}
+                          #{String(student.rank).padStart(2, "0")}
                         </span>
                       </td>
                       <td className="px-4 py-4">
-                        <div className="flex items-center gap-3">
-                          <div
-                            className={`w-9 h-9 rounded-full ${avatarBgs[trader.rank - 1]} flex items-center justify-center text-base flex-shrink-0 border border-white/10 shadow-inner`}
-                          >
-                            {trader.avatar}
-                          </div>
-                          <span className="font-semibold text-gray-200 text-sm tracking-wide">{trader.name}</span>
-                        </div>
+                        <span className="font-semibold text-gray-200 text-sm tracking-wide">{student.name}</span>
                       </td>
-                      <td className="px-4 py-4 text-gray-500 font-mono text-xs tracking-widest">{trader.rollNo}</td>
+                      <td className="px-4 py-4 text-gray-500 font-mono text-xs tracking-widest">{student.rollNo}</td>
                       <td className="px-4 py-4">
-                        <div className="flex items-center gap-2">
-                          <span className="text-xl drop-shadow-md">{trader.countryFlag}</span>
-                          <span className="text-gray-400 font-medium text-xs tracking-wide uppercase">{trader.country}</span>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4">
-                        <span className={`font-bold font-mono tracking-wide ${isTop3 ? "text-emerald-400" : "text-gray-400"}`}>
-                          {trader.profit}
-                        </span>
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="flex items-center gap-3">
-                          <div className="flex-1 h-1.5 rounded-full bg-black/60 overflow-hidden w-24 border border-white/5">
-                            <div
-                              className={`h-full rounded-full ${
-                                isTop3 ? "bg-gradient-to-r from-indigo-500 to-purple-400" : "bg-gray-600"
-                              }`}
-                              style={{ width: trader.winRate }}
-                            />
-                          </div>
-                          <span className="text-gray-400 font-mono text-[10px] w-8">{trader.winRate}</span>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4">
-                        <button
-                          className="px-5 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-widest border border-white/10 bg-black/40 text-gray-400 hover:border-indigo-500/50 hover:text-indigo-300 hover:bg-indigo-500/10 transition-all shadow-sm whitespace-nowrap"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            triggerFireworks(); 
-                          }}
-                        >
-                          Request
-                        </button>
+                        
                       </td>
                     </tr>
                   );

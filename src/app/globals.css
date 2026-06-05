@@ -9,53 +9,52 @@
   --font-sans: var(--font-play);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+@keyframes dynamic-alarm {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  /* Phase 1: Fast & Aggressive Vibration (0% to 20%) */
+  5%  { transform: scale(1.1) translateX(-3px) rotate(-3deg); }
+  10% { transform: scale(1.1) translateX(3px) rotate(3deg); }
+  15% { transform: scale(1.1) translateX(-3px) rotate(-2deg); }
+  20% { transform: scale(1.1) translateX(2px) rotate(2deg); }
+  
+  /* Phase 2: Smooth Transition & Slowing Down (20% to 40%) */
+  25% { transform: scale(1.05) translateX(-1px) rotate(-1deg); }
+  30% { transform: scale(1.05) translateX(1px) rotate(1deg); }
+  35% { transform: scale(1.02) translateX(-0.5px); }
+  
+  /* Phase 3: Quiet Breathing / Resting Period (40% to 90%) */
+  40%, 90% { transform: scale(1) translateX(0) rotate(0deg); }
+}
+
+.animate-alarm-vibe {
+  /* Runs the entire loop over 2.5 seconds continuously */
+  animation: dynamic-alarm 2.5s ease-in-out infinite;
+}
+/* Add this inside your globals.css */
+@keyframes outward-glow {
+  0% {
+    transform: scale(0.98);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 0;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  cursor: url('/cursor.png'), auto;
- 
+.animate-pulse-outward {
+  animation: outward-glow 3s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
-button{
-  cursor: pointer;
+/* Add this inside your globals.css */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
 }
-/* 
-*{
-    margin:0;
-    padding: 0;
-    box-sizing: borde-box;
-} */
-/* img{
-    width:100%;
-    height: 100%;
-    object-fit: cover;
-} */
 
-/* h1{
-  text-transform: uppercase;
-  font-family: sans-serif;
-  font-size: clamp(3rem,10vw,15rem);
-  font-weight: 500;
-  letter-spacing: -0.025rem;
-  line-height: 1;
+.animate-float {
+  animation: float 4s ease-in-out infinite;
 }
-p{
-  font-family: sans-serif;
-  font-size: 1.75rem;
-  font-weight: 400;
-  letter-spacing: -0.025;
-  line-height: 1.25;
-}
-section{
-  position: absolute;
-  width: 100%;
-  height: 100svh;
-  min-height: 100svh;
-  overflow: hidden;
-} */
