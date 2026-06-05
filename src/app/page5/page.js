@@ -198,7 +198,7 @@ export default function ProtocolPage() {
   <div className="flex items-center gap-3">
     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_8px_#4ade80]" />
     <p className="w-fit px-4 py-1.5 bg-green-950/60 border border-green-800/50 rounded-full shadow-[0_0_15px_rgba(34,197,94,0.2)] text-green-400 font-mono text-lg md:text-xl uppercase tracking-widest backdrop-blur-sm">
-      System Comm // Mr. Shukla Lab Wale
+      System Comm // Mr. Green
     </p>
   </div>
   

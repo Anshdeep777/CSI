@@ -222,7 +222,7 @@ export default function EvaluationPage() {
               <div className="flex items-center gap-3">
                 <div className="w-2.5 h-2.5 bg-pink-400 rounded-full animate-pulse shadow-[0_0_10px_#ec4899]" />
                 <p className="w-fit px-4 py-1 bg-pink-950/40 border border-pink-800/40 rounded-full text-pink-300 font-mono text-sm md:text-base uppercase tracking-widest backdrop-blur-sm shadow-[inset_0_0_10px_rgba(236,72,153,0.1)]">
-                  Miss. Pados Wali Aunty (CCTV Protocol)
+                  Miss. Pink (CCTV Protocol)
                 </p>
               </div>
 

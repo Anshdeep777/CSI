@@ -1,15 +1,10 @@
 'use client'
 
 import React, { useState, useRef } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './MetallicCard.css';
 
-gsap.registerPlugin(ScrollTrigger);
-
 // Individual Card Component
-const MetallicCard = ({ name, role, specialty, imageSrc, cardClass }) => {
+const MetallicCard = ({ name, role, specialty, imageSrc }) => {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef(null);
@@ -51,7 +46,7 @@ const MetallicCard = ({ name, role, specialty, imageSrc, cardClass }) => {
   };
 
   return (
-    <div className={`perspective-container ${cardClass}`}>
+    <div className="perspective-container">
       <div
         className={`metallic-card ${!isHovered ? 'resetting' : ''}`}
         ref={cardRef}
@@ -76,8 +71,6 @@ const MetallicCard = ({ name, role, specialty, imageSrc, cardClass }) => {
 
 // Parent Gallery Component
 export default function CardGallery() {
-  const galleryRef = useRef(null);
-
   // Character data config
   const cardsData = [
     {
@@ -103,23 +96,8 @@ export default function CardGallery() {
     }
   ];
 
-  // GSAP scroll trigger staggered entrance
-  useGSAP(() => {
-    gsap.from(".character-card-anim", {
-      y: 100,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: galleryRef.current,
-        start: "top 80%",
-      }
-    });
-  }, { scope: galleryRef });
-
   return (
-    <div className="card-gallery" ref={galleryRef}>
+    <div className="card-gallery">
       {cardsData.map((card) => (
         <MetallicCard 
           key={card.id}
@@ -127,7 +105,6 @@ export default function CardGallery() {
           role={card.role}
           specialty={card.specialty}
           imageSrc={card.imageSrc}
-          cardClass="character-card-anim"
         />
       ))}
     </div>

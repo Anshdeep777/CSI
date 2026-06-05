@@ -2,7 +2,7 @@ import React from 'react'
 
 const Page = () => {
   return (
-    <div className='bg-black min-h-screen w-full flex flex-col items-center justify-center p-4 sm:p-6 md:p-12 select-none overflow-x-hidden'>
+    <div className='bg-black min-h-screen w-full flex flex-col items-center justify-center p-4 sm:p-8 mt-12 md:p-12 select-none overflow-x-hidden '>
       
       {/* Story-Based Page Heading */}
       <div className="text-center mb-10 md:mb-16 max-w-2xl mt-6">
