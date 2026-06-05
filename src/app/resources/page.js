@@ -71,7 +71,7 @@ const Page = () => {
       id: 7,
       title: "Feedback Loops and Trade-Offs",
       imageUrl: "/seven.png",
-      driveLink: "https://drive.google.com/file/d/1rDMBv_UlwhtZshNkr7U1o-cxkk7L-4VX/view",
+      driveLink: "https://drive.google.com/file/d/1nXKtu4KBEj8oYxL_hr8CdnI54aKgNT1b/view?usp=sharing",
       week: "week01",
     },
   ];

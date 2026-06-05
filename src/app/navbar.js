@@ -182,7 +182,7 @@ export default function Navbar() {
                 >
                   <span>{week.label}</span>
                   {week.label === "week01" ? (
-                    <Lock className="w-3.5 h-3.5 text-gray-500" />
+                   ""
                   ) : null}
                 </Link>
               ))}
