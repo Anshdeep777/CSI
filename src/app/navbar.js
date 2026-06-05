@@ -79,9 +79,7 @@ export default function Navbar() {
                   className="px-4 py-2.5 text-sm font-medium text-gray-300 rounded-lg hover:text-white hover:bg-green-500/20 transition-all uppercase tracking-wider flex items-center justify-center gap-2"
                 >
                   <span>{week.label}</span>
-                  {week.label === "week01" ? (
-                    <Lock className="w-3.5 h-3.5 text-gray-400" />
-                  ) : null}
+                  
                 </Link>
               ))}
             </div>

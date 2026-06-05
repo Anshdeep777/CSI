@@ -82,7 +82,7 @@ export default function CardGallery() {
     },
     {
       id: 2,
-      name: "Mr. Green",
+      name: "Mr. Manager",
       role: "Pod Lead // GreenEdge",
       specialty: "Systems Thinking & Macro-Economics",
       imageSrc: "/manager.png"
@@ -93,6 +93,20 @@ export default function CardGallery() {
       role: "CEO // Sprint",
       specialty: "Hyper-Growth Scaling & Executive Pushback",
       imageSrc: "/aryanceo.png"
+    },
+    {
+      id: 4,
+      name: "Mr. Green",
+      role: "Pod Manager ",
+      specialty: "Strategic Frameworks & Executive Pitching ",
+      imageSrc: "/character.png"
+    },
+    {
+      id: 5,
+      name: "Miss. Pink",
+      role: "Internal Audit Partner ",
+      specialty: "Deliverable Review & Exposing Greenwashing ",
+      imageSrc: "/character2.png"
     }
   ];
 

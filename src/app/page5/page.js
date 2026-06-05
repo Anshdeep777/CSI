@@ -105,7 +105,7 @@ export default function ProtocolPage() {
   };
 
   // The text to be typed out
-  const mrGreenDialogue = `"Listen closely, recruit. The architecture you build here will define your future. The mission ahead is split into two critical phases. Pay attention, your clearance depends on it."`;
+  const mrGreenDialogue = `"Listen closely, analyst. Sprint is bleeding capital, the investors are freezing funds, and the executive board is fracturing. Your deployment is split into two critical phases. Master the frameworks, or the company collapses. Pay attention."`;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -198,13 +198,13 @@ export default function ProtocolPage() {
   <div className="flex items-center gap-3">
     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_8px_#4ade80]" />
     <p className="w-fit px-4 py-1.5 bg-green-950/60 border border-green-800/50 rounded-full shadow-[0_0_15px_rgba(34,197,94,0.2)] text-green-400 font-mono text-lg md:text-xl uppercase tracking-widest backdrop-blur-sm">
-      System Comm // Mr. Green
+      SECURE COMM // POD MANAGER
     </p>
   </div>
   
   {/* Funny Subtitle/Lore Note */}
   <p className="text-green-500/70 font-mono text-xs md:text-xl pl-5 italic border-l border-green-800/50 ml-1">
-    * Warning: Your code might be running an entire AI infrastructure, but if you haven't drawn the margin lines and written the index with a blue pen, he won't check your file.
+    * Warning: You can have the most advanced sustainability models in the world, but if your slide deck doesn't answer the CFO's bottom line in the first three minutes, your strategy is dead on arrival.
   </p>
 </div>
             </div>
@@ -225,7 +225,7 @@ export default function ProtocolPage() {
           {/* Main Protocol Header */}
           <div ref={headerRef} className="mb-6 opacity-0">
             <h1 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-100 via-green-100 to-green-500 tracking-tighter uppercase drop-shadow-[0_0_10px_rgba(34,197,94,0.2)]">
-              The Two-Phase Protocol
+              THE TWO-PHASE PROTOCOL
             </h1>
           </div>
 
@@ -234,27 +234,27 @@ export default function ProtocolPage() {
             <Metallic3DGreenCard 
               elRef={addToRefs} 
               number="01" 
-              subtitle="Weeks 1–3"
-              title="The Baseline Infrastructure"
+              subtitle="WEEKS 1–4"
+              title="THE CORE ENGAGEMENT"
             >
               <p className="mb-4">
-                Phase 1 is your <strong className="text-white">basic training</strong>. We will cover the foundational nodes of sustainability architecture: system boundaries, mathematical ledgers, and lifecycle analysis. You will be assigned specific, step-by-step tasks each week.
+                Phase 1 is your live deployment into the crisis. You will audit Sprint’s fractured operations—investigating carbon emissions, supply chain ethics, climate risks, and ESG disclosures. You will be assigned specific tasks each week, turning raw corporate data into hard-hitting executive memos and strategic roadmaps.
               </p>
               
               <div className="p-3 bg-red-950/40 border border-red-900/50 rounded shadow-inner text-red-300 text-sm font-mono flex items-start gap-3 mt-4">
-                <span className="text-red-500 mt-0.5">⚠</span>
-                <p>Do not skip these missions. Even partial architectures must be submitted, as incomplete data drastically impacts your clearance eligibility for the Core Team.</p>
+                <span className="text-red-500 mt-0.5">⚠️</span>
+                <p>Fully invest in the briefings. This is a high-stakes simulation—you are expected to read every decrypted resource and attempt every diagnostic, even if you deploy late. Your ability to synthesize this intelligence is what separates an intern from a Lead Consultant.</p>
               </div>
             </Metallic3DGreenCard>
 
             <Metallic3DGreenCard 
               elRef={addToRefs} 
               number="02" 
-              subtitle="Weeks 4–6"
-              title="Advanced Threat Vectors"
+              subtitle="WEEK 5"
+              title="THE CAPSTONE PITCH"
             >
               <p>
-                The data volume will exceed generalist capacities. You will select a <strong className="text-white">specialized track</strong>. You will dive deep into specialized tooling, competing directly against peers in your track to solve a massive, real-world corporate data leak.
+                The simulation culminates in the boardroom. You will select a final project track and synthesize four weeks of intelligence into a single, high-stakes presentation deck. You will compete against other analysts to pitch your final strategy. Your objective: convince the investors and unlock the ₹800 Cr funding.
               </p>
             </Metallic3DGreenCard>
           </div>

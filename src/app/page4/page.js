@@ -122,7 +122,7 @@ export default function EvaluationPage() {
     }
   };
 
-  const missPinkDialogue = `"Pay attention, Architect. Your performance isn't graded on a curve; it's tracked dynamically. Submit everything, climb the APEX Leaderboard, and earn your clearance. Don't disappoint me."`;
+  const missPinkDialogue = `"Listen closely, interns. The Sprint account is a massive liability and the investors are watching. Your performance isn't graded on an academic curve; it is evaluated on actual output. Engage with the daily WhatsApp case drops, pass your weekly quizzes, and submit your strategic memos. Break into the Top 5 Leaderboard, and prove you belong at this firm."`;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -206,7 +206,7 @@ export default function EvaluationPage() {
           {/* Header Section */}
           <div ref={headerRef} className="mb-6 opacity-0">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-pink-200 to-pink-500 tracking-tighter uppercase drop-shadow-[0_0_15px_rgba(236,72,153,0.3)]">
-              Evaluation & Clearance Protocols
+              EVALUATION & CLEARANCE PROTOCOLS
             </h1>
           </div>
 
@@ -222,14 +222,12 @@ export default function EvaluationPage() {
               <div className="flex items-center gap-3">
                 <div className="w-2.5 h-2.5 bg-pink-400 rounded-full animate-pulse shadow-[0_0_10px_#ec4899]" />
                 <p className="w-fit px-4 py-1 bg-pink-950/40 border border-pink-800/40 rounded-full text-pink-300 font-mono text-sm md:text-base uppercase tracking-widest backdrop-blur-sm shadow-[inset_0_0_10px_rgba(236,72,153,0.1)]">
-                  Miss. Pink (CCTV Protocol)
+                  MISS. PINK (INTERNAL AUDIT PARTNER)
                 </p>
               </div>
 
               <p className="text-pink-500/60 font-mono text-xs md:text-sm pl-5 italic border-l-2 border-pink-800/30 ml-1.5">
-                * Threat Level: Apex. Operates on an unhackable 360-degree
-                surveillance network. No encrypted payload or "group
-                study" excuse escapes her packet sniffing.
+                * Role: Lead Auditor at GreenEdge Consulting. She reviews all intern deliverables. No greenwashed metric, logical fallacy, or plagiarized memo gets past her desk.
               </p>
             </div>
             
@@ -250,50 +248,33 @@ export default function EvaluationPage() {
             <Metallic3DEvalCard
               elRef={addToRefs}
               number="01"
-              title="Deploy Everything"
+              title="Complete Every Deliverable"
             >
-              For both phases, you will receive encrypted intel and software
-              challenges.
-              <strong className="text-gray-100 font-semibold"> Submit everything you build. </strong> 
-              Partial architectures count. A broken database is worth more
-              points than no database.
+              Throughout the 4-week core engagement, you must manage daily case study drops on WhatsApp, weekly automated quizzes, and major Sunday assignments. Submit everything you draft. In consulting, a flawed materiality assessment is always better than a missed deadline. The work cycle resets every Saturday—do not fall behind.
             </Metallic3DEvalCard>
 
             <Metallic3DEvalCard
               elRef={addToRefs}
               number="02"
-              title="The Leaderboard"
+              title="The Firm Leaderboard"
             >
-              Your submissions drive your operational ranking. Points are
-              awarded for mathematical accuracy, boundary logic, and UI design.
-              <span className="text-pink-400 block mt-2 font-semibold">
-                Bonus points are heavily awarded for uncovering hidden "Easter
-                Egg" liabilities.
-              </span>
+              Your major assignments, quiz scores, and active participation directly drive your internal ranking. At the close of each week, the Top 5 Analysts will be announced on the main dashboard. Points are heavily awarded for analytical rigor, structured thinking, and exposing real corporate vulnerabilities.
             </Metallic3DEvalCard>
 
             <Metallic3DEvalCard
               elRef={addToRefs}
               number="03"
-              title="Public Recognition"
+              title="The Capstone Pitch"
             >
-              Every Monday, the Top 10 Architects will have their ranks and
-              profiles declassified and published on the official CSI Instagram
-              and the War Room Dashboard.
+              The engagement concludes in Week 5. You must synthesize four weeks of data into a single, high-stakes boardroom deck. Your ultimate objective is to convince GreenBridge Capital to release Sprint's frozen ₹800 crore Series B funding. This final strategy pitch dictates your ultimate standing within the firm.
             </Metallic3DEvalCard>
 
             <Metallic3DEvalCard
               elRef={addToRefs}
               number="04"
-              title="The Ultimate Prize"
+              title="Certifications & Clearance"
             >
-              The <strong className="text-pink-300 font-semibold">Top 3 performers</strong> at
-              the end of Phase 2 will bypass standard interviews and earn
-              immediate,{" "}
-              <strong className="text-white font-semibold">
-                Level-5 Clearance (Direct Entry)
-              </strong>{" "}
-              into the CSI Tech Core Team.
+              Survival has its rewards. All Analysts who successfully complete the 5-week program and submit their deliverables will earn an official Certificate of Completion. The absolute top performers will receive a Merit Certification, with the highest ranks bypassing standard interviews for direct entry into the CSI Tech Core Team.
             </Metallic3DEvalCard>
           </div>
         </div>

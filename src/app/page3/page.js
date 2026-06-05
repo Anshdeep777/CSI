@@ -22,10 +22,12 @@ export default function AnimatedTimeline() {
       });
     }
 
+    // Initialize all 5 nodes
     gsap.set('.timeline-node-1', { transformOrigin: 'center', scale: 0, opacity: 0 });
     gsap.set('.timeline-node-2', { transformOrigin: 'center', scale: 0, opacity: 0 });
     gsap.set('.timeline-node-3', { transformOrigin: 'center', scale: 0, opacity: 0 });
     gsap.set('.timeline-node-4', { transformOrigin: 'center', scale: 0, opacity: 0 });
+    gsap.set('.timeline-node-5', { transformOrigin: 'center', scale: 0, opacity: 0 });
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -37,39 +39,44 @@ export default function AnimatedTimeline() {
     });
 
     tl.to('.timeline-node-1', {
-        scale: 1,
-        opacity: 1,
-        duration: 0.6,
-        ease: 'back.out(1.5)',
-        stagger: 0.1,
-      });
+      scale: 1,
+      opacity: 1,
+      duration: 0.6,
+      ease: 'back.out(1.5)',
+    });
 
     if (path) {
       tl.to(path, {
         strokeDashoffset: 0,
-        duration: 2.5,
+        duration: 3.0,
         ease: 'power2.inOut'
       }, "-=0.2");
     }
 
     tl.to('.timeline-node-2', {
-        scale: 1,
-        opacity: 1,
-        duration: 0.6,
-        ease: 'back.out(1.5)',
-      }, path ? "-=1.8" : "-=0.3")
-      .to('.timeline-node-3', {
-        scale: 1,
-        opacity: 1,
-        duration: 0.6,
-        ease: 'back.out(1.5)',
-      }, path ? "-=1.1" : "-=0.3")
-      .to('.timeline-node-4', {
-        scale: 1,
-        opacity: 1,
-        duration: 0.6,
-        ease: 'back.out(1.5)',
-      }, path ? "-=0.4" : "-=0.3");
+      scale: 1,
+      opacity: 1,
+      duration: 0.6,
+      ease: 'back.out(1.5)',
+    }, path ? "-=2.4" : "-=0.3")
+    .to('.timeline-node-3', {
+      scale: 1,
+      opacity: 1,
+      duration: 0.6,
+      ease: 'back.out(1.5)',
+    }, path ? "-=1.8" : "-=0.3")
+    .to('.timeline-node-4', {
+      scale: 1,
+      opacity: 1,
+      duration: 0.6,
+      ease: 'back.out(1.5)',
+    }, path ? "-=1.1" : "-=0.3")
+    .to('.timeline-node-5', {
+      scale: 1,
+      opacity: 1,
+      duration: 0.6,
+      ease: 'back.out(1.5)',
+    }, path ? "-=0.4" : "-=0.3");
 
     return () => {
       tl.kill();
@@ -84,57 +91,73 @@ export default function AnimatedTimeline() {
     >
       <div className="text-center mb-12 md:mb-16">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500 uppercase drop-shadow-[0_2px_10px_rgba(255,255,255,0.15)]">
-          The Operations Cycle
+          THE OPERATIONS CYCLE
         </h2>
         <p className="text-gray-500 text-xs sm:text-sm md:text-base mt-2 tracking-widest uppercase font-semibold border-t border-white/5 pt-2 max-w-sm mx-auto">
-          Weekly Cadence
+          ENGAGEMENT CADENCE
         </p>
       </div>
 
       {/* MOBILE LAYOUT */}
       <div className="flex md:hidden flex-col gap-10 relative w-full max-w-md px-4 before:absolute before:left-[27px] before:top-2 before:bottom-2 before:w-1 before:bg-gray-800">
         
+        {/* NODE 01 */}
         <div className="timeline-node-1 flex gap-6 items-start relative">
           <div className="w-10 h-10 rounded-full bg-[#09090b] border-4 border-gray-400 flex items-center justify-center font-bold text-sm shadow-[0_0_15px_rgba(255,255,255,0.1)] shrink-0 z-10 text-gray-400">
             01
           </div>
           <div className="flex flex-col">
-            <h3 className="text-xl font-bold text-gray-100">Live Intel Sessions</h3>
-            <span className="text-blue-400 text-sm font-medium mt-0.5">Monday & Thursday</span>
-            <span className="text-gray-500 text-xs mt-1">Mandatory sessions (Recordings linked post-session)</span>
+            <h3 className="text-xl font-bold text-gray-100">Live Intel</h3>
+            <span className="text-blue-400 text-sm font-medium mt-0.5">Weekly Dispatch</span>
+            <span className="text-gray-500 text-xs mt-1">High-density strategy sessions. Stand by for transmission alerts from your Pod Manager.</span>
           </div>
         </div>
 
+        {/* NODE 02 */}
         <div className="timeline-node-2 flex gap-6 items-start relative">
           <div className="w-10 h-10 rounded-full bg-[#09090b] border-4 border-gray-500 flex items-center justify-center font-bold text-sm shadow-[0_0_15px_rgba(255,255,255,0.1)] shrink-0 z-10 text-gray-500">
             02
           </div>
           <div className="flex flex-col">
-            <h3 className="text-xl font-bold text-gray-100">Tactical Execution</h3>
-            <span className="text-blue-400 text-sm font-medium mt-0.5">Daily</span>
-            <span className="text-gray-500 text-xs mt-1">Resource reading and minor tasks</span>
+            <h3 className="text-xl font-bold text-gray-100">Tactical</h3>
+            <span className="text-blue-400 text-sm font-medium mt-0.5">Daily Portal Sync</span>
+            <span className="text-gray-500 text-xs mt-1">Access the terminal daily to decrypt briefs and execute minor operational diagnostics.</span>
           </div>
         </div>
 
+        {/* NODE 03 */}
         <div className="timeline-node-3 flex gap-6 items-start relative">
           <div className="w-10 h-10 rounded-full bg-[#09090b] border-4 border-gray-600 flex items-center justify-center font-bold text-sm shadow-[0_0_15px_rgba(255,255,255,0.1)] shrink-0 z-10 text-gray-600">
             03
           </div>
           <div className="flex flex-col">
-            <h3 className="text-xl font-bold text-gray-100">Major Deployment</h3>
-            <span className="text-blue-400 text-sm font-medium mt-0.5">Sunday EOD</span>
-            <span className="text-gray-500 text-xs mt-1">Architecture deployment (Final Submission)</span>
+            <h3 className="text-xl font-bold text-gray-100">Comms Network</h3>
+            <span className="text-blue-400 text-sm font-medium mt-0.5">Daily Case Drops</span>
+            <span className="text-gray-500 text-xs mt-1">Monitor the secure WhatsApp channel for rapid-fire, real-world case debates.</span>
           </div>
         </div>
 
+        {/* NODE 04 */}
         <div className="timeline-node-4 flex gap-6 items-start relative">
           <div className="w-10 h-10 rounded-full bg-[#09090b] border-4 border-gray-700 flex items-center justify-center font-bold text-sm shadow-[0_0_15px_rgba(255,255,255,0.1)] shrink-0 z-10 text-gray-700">
             04
           </div>
           <div className="flex flex-col">
-            <h3 className="text-xl font-bold text-gray-100">Clearance Quiz</h3>
+            <h3 className="text-xl font-bold text-gray-100">Deployment</h3>
+            <span className="text-blue-400 text-sm font-medium mt-0.5">Cycle Deadline</span>
+            <span className="text-gray-500 text-xs mt-1">Deploy your major strategic deliverables before the weekly system lockout.</span>
+          </div>
+        </div>
+
+        {/* NODE 05 */}
+        <div className="timeline-node-5 flex gap-6 items-start relative">
+          <div className="w-10 h-10 rounded-full bg-[#09090b] border-4 border-gray-800 flex items-center justify-center font-bold text-sm shadow-[0_0_15px_rgba(255,255,255,0.1)] shrink-0 z-10 text-gray-800">
+            05
+          </div>
+          <div className="flex flex-col">
+            <h3 className="text-xl font-bold text-gray-100">Clearance</h3>
             <span className="text-blue-400 text-sm font-medium mt-0.5">Post-Submission</span>
-            <span className="text-gray-500 text-xs mt-1">Automated clearance assessment</span>
+            <span className="text-gray-500 text-xs mt-1">Execute the automated assessment quiz to verify your intelligence sync.</span>
           </div>
         </div>
 
@@ -167,58 +190,79 @@ export default function AnimatedTimeline() {
             </filter>
           </defs>
 
-          {/* Adjusted path to accommodate 4 nodes */}
+          {/* Expanded 5-node Sine Curve Path */}
           <path
             ref={pathRef}
-            d="M 120 450 C 250 450, 250 200, 380 200 C 510 200, 510 450, 640 450 C 770 450, 770 200, 900 200"
+            d="M 100 450 C 200 450, 220 200, 300 200 C 380 200, 420 450, 500 450 C 580 450, 620 200, 700 200 C 780 200, 820 450, 900 450"
             fill="none"
             stroke="#374151"
             strokeWidth="4"
             strokeLinecap="round"
           />
 
+          {/* NODE 01 */}
           <g className="timeline-node-1">
             <circle
-              cx="120" cy="450" r="45"
-              fill="#09090b" stroke="url(#chromeGradient)" strokeWidth="8" filter="url(#metallicGlow)"
+              cx="100" cy="450" r="40"
+              fill="#09090b" stroke="url(#chromeGradient)" strokeWidth="6" filter="url(#metallicGlow)"
             />
-            <text x="120" y="456" textAnchor="middle" fill="#6b7280" fontSize="18" fontWeight="bold" letterSpacing="2">01</text>
-            <text x="120" y="530" textAnchor="middle" fill="#f3f4f6" fontSize="18" fontWeight="bold">Live Intel</text>
-            <text x="120" y="555" textAnchor="middle" fill="#60a5fa" fontSize="14">Mon & Thu</text>
-            <text x="120" y="580" textAnchor="middle" fill="#4b5563" fontSize="12">Mandatory Sessions</text>
+            <text x="100" y="456" textAnchor="middle" fill="#6b7280" fontSize="16" fontWeight="bold" letterSpacing="1">01</text>
+            <text x="100" y="525" textAnchor="middle" fill="#f3f4f6" fontSize="16" fontWeight="bold">Live Intel</text>
+            <text x="100" y="548" textAnchor="middle" fill="#60a5fa" fontSize="13" fontWeight="medium">Weekly Dispatch</text>
+            <text x="100" y="575" textAnchor="middle" fill="#4b5563" fontSize="11">High-density strategy sessions.</text>
+            <text x="100" y="592" textAnchor="middle" fill="#4b5563" fontSize="11">Stand by for transmission alerts</text>
           </g>
 
+          {/* NODE 02 */}
           <g className="timeline-node-2">
             <circle
-              cx="380" cy="200" r="45"
-              fill="#09090b" stroke="url(#chromeGradient)" strokeWidth="8" filter="url(#metallicGlow)"
+              cx="300" cy="200" r="40"
+              fill="#09090b" stroke="url(#chromeGradient)" strokeWidth="6" filter="url(#metallicGlow)"
             />
-            <text x="380" y="206" textAnchor="middle" fill="#6b7280" fontSize="18" fontWeight="bold" letterSpacing="2">02</text>
-            <text x="380" y="100" textAnchor="middle" fill="#f3f4f6" fontSize="18" fontWeight="bold">Tactical</text>
-            <text x="380" y="125" textAnchor="middle" fill="#60a5fa" fontSize="14">Daily</text>
-            <text x="380" y="150" textAnchor="middle" fill="#4b5563" fontSize="12">Reading & Minor Tasks</text>
+            <text x="300" y="206" textAnchor="middle" fill="#6b7280" fontSize="16" fontWeight="bold" letterSpacing="1">02</text>
+            <text x="300" y="100" textAnchor="middle" fill="#f3f4f6" fontSize="16" fontWeight="bold">Tactical</text>
+            <text x="300" y="123" textAnchor="middle" fill="#60a5fa" fontSize="13" fontWeight="medium">Daily Portal Sync</text>
+            <text x="300" y="150" textAnchor="middle" fill="#4b5563" fontSize="11">Access terminal daily to decrypt</text>
+            <text x="300" y="167" textAnchor="middle" fill="#4b5563" fontSize="11">briefs & execute diagnostics.</text>
           </g>
 
+          {/* NODE 03 */}
           <g className="timeline-node-3">
             <circle
-              cx="640" cy="450" r="45"
-              fill="#09090b" stroke="url(#chromeGradient)" strokeWidth="8" filter="url(#metallicGlow)"
+              cx="500" cy="450" r="40"
+              fill="#09090b" stroke="url(#chromeGradient)" strokeWidth="6" filter="url(#metallicGlow)"
             />
-            <text x="640" y="456" textAnchor="middle" fill="#6b7280" fontSize="18" fontWeight="bold" letterSpacing="2">03</text>
-            <text x="640" y="530" textAnchor="middle" fill="#f3f4f6" fontSize="18" fontWeight="bold">Deployment</text>
-            <text x="640" y="555" textAnchor="middle" fill="#60a5fa" fontSize="14">Sunday EOD</text>
-            <text x="640" y="580" textAnchor="middle" fill="#4b5563" fontSize="12">Major Architecture Submission</text>
+            <text x="500" y="456" textAnchor="middle" fill="#6b7280" fontSize="16" fontWeight="bold" letterSpacing="1">03</text>
+            <text x="500" y="525" textAnchor="middle" fill="#f3f4f6" fontSize="16" fontWeight="bold">Comms Network</text>
+            <text x="500" y="548" textAnchor="middle" fill="#60a5fa" fontSize="13" fontWeight="medium">Daily Case Drops</text>
+            <text x="500" y="575" textAnchor="middle" fill="#4b5563" fontSize="11">Monitor secure WhatsApp channel</text>
+            <text x="500" y="592" textAnchor="middle" fill="#4b5563" fontSize="11">for rapid-fire case debates.</text>
           </g>
 
+          {/* NODE 04 */}
           <g className="timeline-node-4">
             <circle
-              cx="900" cy="200" r="45"
-              fill="#09090b" stroke="url(#chromeGradient)" strokeWidth="8" filter="url(#metallicGlow)"
+              cx="700" cy="200" r="40"
+              fill="#09090b" stroke="url(#chromeGradient)" strokeWidth="6" filter="url(#metallicGlow)"
             />
-            <text x="900" y="206" textAnchor="middle" fill="#6b7280" fontSize="18" fontWeight="bold" letterSpacing="2">04</text>
-            <text x="900" y="100" textAnchor="middle" fill="#f3f4f6" fontSize="18" fontWeight="bold">Clearance</text>
-            <text x="900" y="125" textAnchor="middle" fill="#60a5fa" fontSize="14">Post-Submission</text>
-            <text x="900" y="150" textAnchor="middle" fill="#4b5563" fontSize="12">Automated Quiz</text>
+            <text x="700" y="206" textAnchor="middle" fill="#6b7280" fontSize="16" fontWeight="bold" letterSpacing="1">04</text>
+            <text x="700" y="100" textAnchor="middle" fill="#f3f4f6" fontSize="16" fontWeight="bold">Deployment</text>
+            <text x="700" y="123" textAnchor="middle" fill="#60a5fa" fontSize="13" fontWeight="medium">Cycle Deadline</text>
+            <text x="700" y="150" textAnchor="middle" fill="#4b5563" fontSize="11">Deploy strategic deliverables</text>
+            <text x="700" y="167" textAnchor="middle" fill="#4b5563" fontSize="11">before weekly system lockout.</text>
+          </g>
+
+          {/* NODE 05 */}
+          <g className="timeline-node-5">
+            <circle
+              cx="900" cy="450" r="40"
+              fill="#09090b" stroke="url(#chromeGradient)" strokeWidth="6" filter="url(#metallicGlow)"
+            />
+            <text x="900" y="456" textAnchor="middle" fill="#6b7280" fontSize="16" fontWeight="bold" letterSpacing="1">05</text>
+            <text x="900" y="525" textAnchor="middle" fill="#f3f4f6" fontSize="16" fontWeight="bold">Clearance</text>
+            <text x="900" y="548" textAnchor="middle" fill="#60a5fa" fontSize="13" fontWeight="medium">Post-Submission</text>
+            <text x="900" y="575" textAnchor="middle" fill="#4b5563" fontSize="11">Execute automated assessment quiz</text>
+            <text x="900" y="592" textAnchor="middle" fill="#4b5563" fontSize="11">to verify your intelligence sync.</text>
           </g>
         </svg>
       </div>
