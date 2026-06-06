@@ -468,12 +468,12 @@ const Page = () => {
                 speed1={18} speed2={25}
                 children1={
                   <div className="flex flex-col sm:flex-row gap-3 pt-5 border-t border-white/[0.06] mt-4">
-                    <DossierButton href="https://drive.google.com/file/d/1UjjbVPDgw4O8G2o3ICFULH5IW-s9HoCs/view" icon={BookOpen} label="ASSET: Capital Markets" color="green" accent="#22d3ee" />
+                    <DossierButton href="https://drive.google.com/file/d/1RLaMSTRbGMmWLs9SZMfB61AyynrOUxBV/view?usp=sharing" icon={BookOpen} label="ASSET: Capital Markets" color="green" accent="#22d3ee" />
                   </div>
                 }
                 children2={
                   <div className="flex flex-col sm:flex-row gap-3 pt-5 border-t border-white/[0.06] mt-4">
-                    <DossierButton href="https://drive.google.com/file/d/1vAGhCyuUEuXr49k83TC034DJGz2HpSoZ/view" icon={FileText} label="ASSET: Bridging Innovation" color="green" accent="#818cf8" />
+                    <DossierButton href="https://drive.google.com/file/d/16wxLS3rMITJLarjm-gzM9kEJ85LQPj0D/view?usp=sharing" icon={FileText} label="ASSET: Bridging Innovation" color="green" accent="#818cf8" />
                   </div>
                 }
               />

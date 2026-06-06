@@ -43,14 +43,14 @@ const Page = () => {
       id: 3,
       title: "Sustainability in Capital Markets",
       imageUrl: "/three.png",
-      driveLink: "https://drive.google.com/file/d/1UjjbVPDgw4O8G2o3ICFULH5IW-s9HoCs/view",
+      driveLink: "https://drive.google.com/file/d/1RLaMSTRbGMmWLs9SZMfB61AyynrOUxBV/view?usp=sharing",
       week: "week01",
     },
     {
       id: 4,
       title: "Bridging Sustainability and Innovation",
       imageUrl: "/four.png",
-      driveLink: "https://drive.google.com/file/d/1vAGhCyuUEuXr49k83TC034DJGz2HpSoZ/view",
+      driveLink: "https://drive.google.com/file/d/16wxLS3rMITJLarjm-gzM9kEJ85LQPj0D/view?usp=sharing",
       week: "week01",
     },
      {
