@@ -2,32 +2,53 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { TriangleAlert, MessageSquare, Folder, FileText, Mail, Loader2 } from "lucide-react";
+import { TriangleAlert, MessageSquare, Folder, FileText, Mail, Loader2, ChevronDown, ArrowDown } from "lucide-react";
 import PriyaPage from '@/app/priya/page.js';
+import { BiDownArrow } from "react-icons/bi";
 
 const Page = () => {
   const router = useRouter();
   const pathname = usePathname();
   
-  // Loader state
+  // Custom states for toast notification, loading, and scroll tracking
+  const [showToast, setShowToast] = useState(true);
   const [isNavigating, setIsNavigating] = useState(false);
+  const [showCornerArrow, setShowCornerArrow] = useState(true);
   
-  // Create a ref for the next section
   const nextSectionRef = useRef(null);
 
-  // Scroll handler function
+  // Auto-dismiss the glass message after 6 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowToast(false);
+    }, 10000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Monitor scroll position to hide the corner arrow when user scrolls deep into the page
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowCornerArrow(false);
+      } else {
+        setShowCornerArrow(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const scrollToNextSection = () => {
     nextSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  // Stop loader when the route successfully changes
   useEffect(() => {
     setIsNavigating(false);
   }, [pathname]);
 
-  // Navigation handler
   const handleNavigation = (path) => {
-    if (pathname === path) return; // Prevent loading if already on the page
+    if (pathname === path) return;
     setIsNavigating(true);
     router.push(path);
   };
@@ -43,6 +64,40 @@ const Page = () => {
           </p>
         </div>
       )}
+
+      {/* Glassmorphism Instruction Toast Notification with Moving Border Glow */}
+      {showToast && (
+        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-md pointer-events-none md:left-[calc(50%+128px)]">
+          {/* Outer moving gradient border simulation */}
+          <div className="relative p-[1px] overflow-hidden rounded-2xl bg-zinc-800/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)]">
+            
+            {/* Animated Rotating Border Element */}
+            <div className="absolute inset-[-200%] bg-[conic-gradient(from_0deg,transparent_40%,#ef4444_50%,transparent_60%)] animate-[spin_4s_linear_infinite]" />
+            
+            {/* Inner Glassmorphic Content Window */}
+            <div className="relative bg-black/90 backdrop-blur-xl rounded-2xl p-4 text-center z-10">
+              <p className="text-zinc-200 text-xs sm:text-sm font-medium tracking-wide leading-relaxed">
+                Go through the flow, scroll down to see conversations, and access the relevant docs! Submission details are also mentioned below in chats.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* FIXED CORNER SCROLL INDICATOR */}
+      <div 
+        onClick={scrollToNextSection}
+        className={`fixed bottom-24 right-6 md:bottom-10 md:right-10 z-40 flex flex-col items-center gap-1 cursor-pointer select-none transition-all duration-500 ${
+          showCornerArrow ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+        }`}
+      >
+        <span className="text-[9px] font-black uppercase tracking-[0.2em] text-green-400/70 bg-black/60 px-2 py-1 rounded-md border border-white/5 backdrop-blur-sm shadow-md">
+          Scroll
+        </span>
+        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-zinc-900/80 border border-green-500/30 text-green-400 shadow-[0_0_15px_rgba(34,197,94,0.2)] hover:border-green-400 hover:shadow-[0_0_20px_rgba(34,197,94,0.4)] transition-all duration-300 animate-bounce">
+          <ArrowDown size={18} strokeWidth={2.5} />
+        </div>
+      </div>
 
       <div className="flex min-h-screen bg-black w-full overflow-hidden mt-10">
         
@@ -115,15 +170,14 @@ const Page = () => {
         {/* MAIN CONTENT */}
         <main className="flex-1 md:ml-64 relative w-full pb-24 md:pb-10">
           
-          <div className="relative min-h-[90dvh] md:min-h-screen w-full flex items-center pt-10 md:pt-0">
+          <div className="relative min-h-[90dvh] md:min-h-screen w-full flex flex-col justify-center pt-10 md:pt-0">
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 w-full gap-8 lg:gap-0 items-center">
               
+              {/* Left Column Text details */}
               <div className="flex flex-col items-center lg:items-start justify-center p-6 md:p-8 lg:pl-16 backdrop-blur-[2px]">
                 <div className="flex items-center gap-2 text-[10px] md:text-xs text-green-500 font-bold tracking-widest uppercase mb-4 underline">
                   Presented by the Club of Sustainability and Innovation
                 </div>
-
-                
 
                 <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight leading-none uppercase text-center lg:text-left transition-all">
                   WEEK 01: <br />
@@ -160,12 +214,13 @@ const Page = () => {
                       className="w-full flex items-center justify-center gap-2 border border-green-500/30 bg-gradient-to-r from-green-950/40 to-emerald-900/40 hover:from-green-900/40 hover:to-emerald-800/40 rounded-xl py-3.5 text-xs text-green-300 hover:text-white font-bold tracking-wider uppercase transition-all duration-200 active:scale-[0.99]"
                     >
                       <span className="tracking-wider">Start Adventure</span>
-                      <span className="text-green-400 group-hover:translate-x-0.5 transition-transform">→</span>
+                      <span className="text-green-400 group-hover:translate-x-0.5 transition-transform"><BiDownArrow/></span>
                     </button>
                   </div>
                 </div>
               </div>
 
+              {/* Right Column Image */}
               <div className="flex flex-col items-center justify-center p-6 md:p-10 lg:p-16">
                 <div className="w-full max-w-md sm:max-w-lg lg:max-w-xl relative group">
                   <div className="absolute inset-0 bg-gradient-to-b from-green-500/10 to-transparent blur-3xl opacity-50 pointer-events-none" />
@@ -180,10 +235,24 @@ const Page = () => {
               </div>
 
             </div>
+
+            {/* Responsive Scroll Down Indicator inside initial screen viewport */}
+            <div 
+              onClick={scrollToNextSection}
+              className="mt-6 mb-4 flex flex-col items-center gap-1 lg:hidden cursor-pointer group select-none self-center z-20"
+            >
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 group-hover:text-green-400 transition-colors">
+                Scroll Down For Intelligence
+              </span>
+              <div className="flex flex-col items-center -space-y-1.5">
+                <ChevronDown className="w-4 h-4 text-green-500/80 animate-bounce" />
+                <ChevronDown className="w-4 h-4 text-green-500/40 animate-bounce [animation-delay:0.15s]" />
+              </div>
+            </div>
           </div>
 
           {/* PRIYA EMAIL BRIEFING INTERACTIVE INTERFACE BLOCK */}
-          <div ref={nextSectionRef} className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24 pt-10">
+          <div ref={nextSectionRef} className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24 pt-10 scroll-mt-12">
             <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start justify-center">
               
               <div className="shrink-0 relative group mt-2">
@@ -196,19 +265,19 @@ const Page = () => {
               </div>
 
               <div className="relative flex-1 w-full max-w-2xl p-5 md:p-6 bg-[#060709]/95 border border-cyan-500/30 rounded-2xl shadow-[0_20px_50px_rgba(239,68,68,0.05)]">
-                <div className="absolute hidden lg:block top-12 -left-[9px] w-4 h-4 bg-[#060709] border-b border-l border-red-500/30 rotate-45" />
-                <div className="absolute lg:hidden -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#060709] border-t border-l border-red-500/30 rotate-45" />
+                <div className="absolute hidden lg:block top-12 -left-[9px] w-4 h-4 bg-[#060709] border-b border-l border-cyan-500/30 rotate-45" />
+                <div className="absolute lg:hidden -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#060709] border-t border-l border-cyan-500/30 rotate-45" />
                 
                 <div className="flex items-center justify-between border-b border-white/5 pb-3 mb-4 text-xs">
                   <div className="flex items-center gap-2.5">
-                    <Mail size={16} className="text-red-400 drop-shadow-[0_0_6px_rgba(239,68,68,0.4)]" />
+                    <Mail size={16} className="text-cyan-400 drop-shadow-[0_0_6px_rgba(34,211,238,0.4)]" />
                     <div className="tracking-wide">
                       <span className="text-gray-500 font-semibold">FROM:</span>{" "}
                       <span className="text-white font-bold font-sans">Priya Nair</span>{" "}
                       <span className="text-gray-400 text-[10px] md:text-[11px]">(Co-founder & COO, Sprint)</span>
                     </div>
                   </div>
-                  <span className="bg-red-950/40 text-red-400 font-black tracking-widest uppercase text-[9px] px-2 py-0.5 rounded border border-red-500/20">
+                  <span className="bg-cyan-950/40 text-cyan-400 font-black tracking-widest uppercase text-[9px] px-2 py-0.5 rounded border border-cyan-500/20">
                     Secure Comms
                   </span>
                 </div>
@@ -218,7 +287,7 @@ const Page = () => {
                   <span className="text-gray-200 font-bold tracking-wide truncate">You're Hired. Here's the Situation.</span>
                 </div>
 
-                <p className="text-sm md:text-base text-gray-300 leading-relaxed font-sans pl-3.5 border-l-2 border-red-500/30 bg-gradient-to-r from-red-500/[0.01] to-transparent py-1 pr-1">
+                <p className="text-sm md:text-base text-gray-300 leading-relaxed font-sans pl-3.5 border-l-2 border-cyan-500/40 bg-gradient-to-r from-cyan-500/[0.01] to-transparent py-1 pr-1">
                   Welcome to the team. Sprint is bleeding money, and GreenBridge Capital blocked our ₹800 Cr Series B because of our ESG metrics. I need your consulting pod to figure out what we are actually dealing with. Start by understanding our business inside and out. Let's talk today.
                 </p>
               </div>
