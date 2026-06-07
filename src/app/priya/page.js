@@ -567,7 +567,7 @@ const Page = () => {
                       </div>
                       <div className="flex items-center gap-2 bg-red-950/50 border border-red-500/30 px-3 py-1.5 rounded-lg">
                         <Timer size={14} className="text-red-400 animate-pulse" />
-                        <span className="text-red-400 font-mono text-[10px] tracking-widest uppercase font-bold">DEADLINE: SUN 23:59 IST</span>
+                        <span className="text-red-400 font-mono text-[10px] tracking-widest uppercase font-bold">DEADLINE: SAT,13/06/26 EOD</span>
                       </div>
                     </div>
                     <div className="space-y-2 mb-6">
