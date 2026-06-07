@@ -1,7 +1,15 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { House, CalendarDays, Medal, Users, ArrowDown, ExternalLink } from "lucide-react";
+import {
+  House,
+  CalendarDays,
+  Medal,
+  Users,
+  ArrowDown,
+  ExternalLink,
+  Bell,
+} from "lucide-react";
 import DemoPage from "./demo/page.js";
 import Page2 from "./page2/page.js";
 import Page3 from "./page3/page.js";
@@ -26,7 +34,7 @@ export default function SparkleBackground() {
           clearInterval(intervalId);
         }
       }, 100);
-    }, 800);
+    }, 1000);
 
     return () => {
       clearTimeout(timeoutId);
@@ -124,8 +132,18 @@ export default function SparkleBackground() {
     const init = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      particles = Array.from({ length: 150 }, () => new Particle(canvas.width, canvas.height));
-      stationaryStars = Array.from({ length: 40 }, () => new StationaryStar(Math.random() * canvas.width, Math.random() * canvas.height));
+      particles = Array.from(
+        { length: 150 },
+        () => new Particle(canvas.width, canvas.height),
+      );
+      stationaryStars = Array.from(
+        { length: 40 },
+        () =>
+          new StationaryStar(
+            Math.random() * canvas.width,
+            Math.random() * canvas.height,
+          ),
+      );
     };
 
     const animate = () => {
@@ -164,17 +182,73 @@ export default function SparkleBackground() {
 
   return (
     <div className="relative min-h-screen w-full bg-[#050505] overflow-x-hidden flex flex-col">
+      {/* BULLETPROOF CSS INJECTION */}
+      <style>{`
+        @keyframes custom-marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-100%); }
+        }
+        .animate-custom-marquee {
+          display: inline-block;
+          padding-left: 100%;
+          animation: custom-marquee 25s linear infinite;
+        }
+        @keyframes border-glow-flow {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .animate-border-glow-flow {
+          background-size: 200% 200%;
+          animation: border-glow-flow 3s ease infinite;
+        }
+      `}</style>
+
+      <div className="fixed top-[90px] left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-4xl p-[2px] rounded-full overflow-hidden shadow-[0_0_30px_rgba(16,185,129,0.2)]">
+        {/* Animated Colorful Border Underlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 via-cyan-500 to-emerald-400 animate-border-glow-flow opacity-80 blur-[1px]"></div>
+
+        {/* Inner Glass Content Container */}
+        <div className="relative bg-zinc-950/90 backdrop-blur-xl w-full h-full rounded-full flex items-center px-4 py-2">
+          {/* Static Left Icon Block */}
+          <div className="flex items-center gap-2 pr-3 border-r border-white/20 shrink-0 z-10 bg-transparent">
+            <Bell className="w-4 h-4 text-emerald-400 animate-bounce" />
+            <span className="text-[10px] sm:text-xs font-black tracking-widest text-white uppercase drop-shadow-md">
+              News
+            </span>
+          </div>
+
+          {/* Marquee Text Block */}
+          <div
+            className="flex-1 overflow-hidden whitespace-nowrap ml-3"
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+            }}
+          >
+            <div className="animate-custom-marquee text-[11px] sm:text-xs font-bold tracking-widest text-zinc-300 uppercase">
+              ⚡ ASSIGNMENT SUBMISSIONS ARE NOW OPEN!
+              &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp; 🏆 MAJOR TASK DEADLINE:
+              SATURDAY, 13/06/26 (EOD) &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp; 🚀
+              WEEK 01 IS LIVE! &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Canvas Background Grid/Particles */}
       <div className="fixed inset-0 pointer-events-none z-0 h-screen overflow-hidden">
         <div
           className="absolute top-[10%] right-[5%] w-[300px] h-[300px] sm:w-[450px] sm:h-[450px] md:w-[600px] md:h-[600px] rounded-full blur-[80px] sm:blur-[120px]"
           style={{
-            background: "radial-gradient(circle, rgba(46, 204, 113, 0.12) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(46, 204, 113, 0.12) 0%, transparent 70%)",
           }}
         />
         <canvas ref={canvasRef} className="block w-full h-full" />
       </div>
 
-      <main className="relative z-10 pt-[100px] md:pt-[120px] pb-12 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between px-6 md:px-12 min-h-[calc(100vh-100px)] gap-10 md:gap-0 flex-grow">
+      {/* Hero Section */}
+      <main className="relative z-10 pt-[180px] md:pt-[200px] pb-12 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between px-6 md:px-12 min-h-[calc(100vh-100px)] gap-10 md:gap-0 flex-grow">
         <div className="w-full md:w-[55%] flex flex-col justify-center text-center md:text-left items-center md:items-start">
           <p className="text-gray-400 tracking-[0.25em] sm:tracking-[0.3em] uppercase text-xs sm:text-sm md:text-base mb-3 md:mb-4">
             Club of
@@ -220,6 +294,7 @@ export default function SparkleBackground() {
         </div>
       </main>
 
+      {/* Additional Pages Layout */}
       <div className="relative z-10">
         <Page2 />
         <Page3 />

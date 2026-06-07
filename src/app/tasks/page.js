@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 
 // Inline SVG Icon for PDF/Drive Links
 const DriveIcon = () => (
@@ -18,6 +18,24 @@ const DriveIcon = () => (
     <polyline points="14 2 14 8 20 8" />
     <line x1="12" y1="18" x2="12" y2="12" />
     <line x1="9" y1="15" x2="15" y2="15" />
+  </svg>
+);
+
+// Inline SVG Icon for Form Uploads
+const UploadIcon = ({ className = "w-4 h-4" }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+    <polyline points="17 8 12 3 7 8" />
+    <line x1="12" y1="3" x2="12" y2="15" />
   </svg>
 );
 
@@ -39,16 +57,15 @@ const LockIcon = () => (
 );
 
 const Page = () => {
-  // State to manage the active tab
-  const [activeWeek, setActiveWeek] = useState("week01");
+  const [activeWeek, setActiveWeek] = React.useState("week01");
 
-  // Only the two specific assignments extracted for Week 01
   const week01Assignments = [
     { 
       id: 1, 
       type: "Read for more info", 
       title: "MINOR TASK", 
       driveLink: "https://drive.google.com/file/d/1TODuPXOuXI7Pb8AoAUiIvZx8xvhPHgP1/view",
+      submitLink: "https://forms.gle/Zpx7AG7UipntJK9U9",
       isHighlight: false
     },
     { 
@@ -56,10 +73,11 @@ const Page = () => {
       type: "Read for more info", 
       title: "MAJOR DELIVERABLE", 
       driveLink: "https://drive.google.com/file/d/18wk9LaSnKra5y5wqjHlFO-DQbOnxXhES/view",
+      submitLink: "https://forms.gle/VTPamWWCWgBxTvJo8",
       isHighlight: true
     }
   ];
-// 
+
   return (
     <div className="min-h-screen bg-black text-zinc-200 py-16 px-6 sm:px-12 font-sans selection:bg-cyan-900 selection:text-cyan-100 mt-10">
       <div className="max-w-7xl mx-auto">
@@ -75,7 +93,7 @@ const Page = () => {
             </p>
           </div>
 
-          {/* Glassmorphism Toggle Switch */}
+          {/* Glassmorphism Week Toggle Switch */}
           <div className="flex gap-2 bg-zinc-900/60 p-1.5 rounded-full border border-white/10 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.5)]">
             <button
               onClick={() => setActiveWeek("week01")}
@@ -102,57 +120,84 @@ const Page = () => {
 
         {/* Dynamic Content Area */}
         {activeWeek === "week01" ? (
-          /* Week 01 Active State: 2 Assignment Cards */
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto md:mx-0">
             {week01Assignments.map((task) => (
-              <a
+              <div
                 key={task.id}
-                href={task.driveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`group relative flex flex-col p-6 sm:p-8 rounded-[32px] border transition-all duration-300 hover:-translate-y-2 overflow-hidden backdrop-blur-md shadow-2xl
+                className={`group relative flex flex-col p-6 sm:p-8 rounded-[32px] border backdrop-blur-md shadow-2xl transition-all duration-300
                   ${task.isHighlight 
-                    ? "bg-gradient-to-br from-red-950/40 to-black border-red-500/30 hover:border-red-500/60 hover:shadow-[0_10px_40px_rgba(239,68,68,0.15)]" 
-                    : "bg-gradient-to-br from-zinc-900/50 to-black border-white/10 hover:border-cyan-500/40 hover:shadow-[0_10px_40px_rgba(34,211,238,0.1)]"
+                    ? "bg-gradient-to-br from-red-950/20 via-zinc-900/10 to-black border-red-500/20 hover:border-red-500/40" 
+                    : "bg-gradient-to-br from-zinc-900/40 via-zinc-900/10 to-black border-white/5 hover:border-cyan-500/30"
                   }`}
               >
-                {/* Subtle gradient background effect on hover */}
-                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 
-                  ${task.isHighlight ? "bg-gradient-to-br from-red-500/10 to-transparent" : "bg-gradient-to-br from-cyan-500/10 to-transparent"}`} 
-                />
-
-                {/* Task Type Badge */}
-                <div className="flex items-center justify-between mb-6 relative z-10">
-                  <span className={`text-[10px] font-black tracking-widest uppercase px-3 py-1.5 rounded-full border backdrop-blur-md shadow-sm
-                    ${task.isHighlight 
-                      ? "text-red-400 bg-red-950/50 border-red-500/30 animate-pulse" 
-                      : "text-cyan-400 bg-cyan-950/40 border-cyan-500/30"}`}>
-                    {task.type}
-                  </span>
-                  <div className={`${task.isHighlight ? "text-red-400" : "text-zinc-600 group-hover:text-cyan-400"} transition-colors bg-white/5 p-2 rounded-full border border-white/5`}>
-                    <DriveIcon />
+                
+                {/* Upper Document Block (Entire block behaves like a safe, massive link) */}
+                <a 
+                  href={task.driveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex flex-col group/doc cursor-pointer"
+                >
+                  {/* Badge & Icon Row */}
+                  <div className="flex items-center justify-between mb-6">
+                    <span className={`text-[10px] font-black tracking-widest uppercase px-3 py-1.5 rounded-full border backdrop-blur-md shadow-sm
+                      ${task.isHighlight 
+                        ? "text-red-400 bg-red-950/50 border-red-500/30" 
+                        : "text-cyan-400 bg-cyan-950/40 border-cyan-500/30"}`}>
+                      {task.type}
+                    </span>
+                    <div className={`${task.isHighlight ? "text-red-400/80 group-hover/doc:text-red-400" : "text-zinc-600 group-hover/doc:text-cyan-400"} transition-colors bg-white/5 p-2.5 rounded-full border border-white/5`}>
+                      <DriveIcon />
+                    </div>
                   </div>
+
+                  {/* Document Title */}
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-wide text-zinc-100 group-hover/doc:text-white transition-colors leading-snug mb-3">
+                    {task.title}
+                  </h3>
+
+                  {/* Helper Text to show it's clickable */}
+                  <p className="text-xs text-zinc-500 group-hover/doc:text-zinc-400 transition-colors tracking-wide flex items-center gap-1.5 mb-8">
+                    Read Brief Document <span className="inline-block transition-transform group-hover/doc:translate-x-1">→</span>
+                  </p>
+                </a>
+
+                {/* DEDICATED SUBMIT BUTTON (Completely isolated to prevent misclicks) */}
+                <div className="pt-4 border-t border-white/10 mt-auto">
+                  {task.isHighlight ? (
+                    /* RED GLOW BUTTON - Major Task */
+                    <a
+                      href={task.submitLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full bg-gradient-to-br from-red-600/20 via-zinc-800/40 to-black/60 backdrop-blur-xl border-t border-l border-red-500/30 border-b border-r border-black/80 shadow-[0_0_20px_rgba(248,113,113,0.1),12px_12px_24px_rgba(0,0,0,0.5),inset_1px_1px_2px_rgba(248,113,113,0.2)] rounded-xl text-red-300 font-bold px-5 py-3 tracking-widest uppercase text-xs flex items-center justify-center gap-2 transition-all duration-300 md:hover:-translate-y-0.5 md:hover:scale-[1.01] md:hover:shadow-[0_0_25px_rgba(248,113,113,0.35),14px_14px_28px_rgba(0,0,0,0.7),inset_2px_2px_4px_rgba(248,113,113,0.4)] md:hover:from-red-600/30 md:hover:text-red-100 active:scale-95"
+                    >
+                      <UploadIcon className="w-4 h-4 text-red-400" />
+                      <span className="drop-shadow-[0_0_6px_rgba(248,113,113,0.5)]">
+                        Submit Major Task
+                      </span>
+                    </a>
+                  ) : (
+                    /* CYAN GLOW BUTTON - Minor Task */
+                    <a
+                      href={task.submitLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full bg-gradient-to-br from-cyan-500/20 via-zinc-800/40 to-black/60 backdrop-blur-xl border-t border-l border-cyan-400/30 border-b border-r border-black/80 shadow-[0_0_20px_rgba(6,182,212,0.1),12px_12px_24px_rgba(0,0,0,0.5),inset_1px_1px_2px_rgba(6,182,212,0.2)] rounded-xl text-cyan-300 font-bold px-5 py-3 tracking-widest uppercase text-xs flex items-center justify-center gap-2 transition-all duration-300 md:hover:-translate-y-0.5 md:hover:scale-[1.01] md:hover:shadow-[0_0_25px_rgba(6,182,212,0.35),14px_14px_28px_rgba(0,0,0,0.7),inset_2px_2px_4px_rgba(6,182,212,0.4)] md:hover:from-cyan-500/30 md:hover:text-cyan-100 active:scale-95"
+                    >
+                      <UploadIcon className="w-4 h-4 text-cyan-400" />
+                      <span className="drop-shadow-[0_0_6px_rgba(34,211,238,0.5)]">
+                        Submit Minor Task
+                      </span>
+                    </a>
+                  )}
                 </div>
 
-                {/* Task Title */}
-                <h3 className="text-xl sm:text-2xl font-bold tracking-wide text-zinc-100 leading-snug relative z-10 flex-1 mb-6">
-                  {task.title}
-                </h3>
-
-                {/* Interaction Text */}
-                <div className="pt-5 border-t border-white/10 relative z-10 flex items-center justify-between">
-                  <span className="text-[11px] text-zinc-500 font-medium uppercase tracking-widest group-hover:text-zinc-300 transition-colors">
-                    Access Deliverable Brief
-                  </span>
-                  <span className="text-zinc-600 group-hover:translate-x-1 transition-transform">
-                    →
-                  </span>
-                </div>
-              </a>
+              </div>
             ))}
           </div>
         ) : (
-          /* Week 02 Empty/Locked State */
+          /* Week 02 Locked State */
           <div className="flex flex-col items-center justify-center w-full py-32 border border-dashed border-white/10 rounded-[40px] bg-zinc-900/20 max-w-4xl mx-auto md:mx-0 backdrop-blur-xl shadow-2xl">
             <div className="bg-white/5 p-5 rounded-full mb-5 shadow-inner border border-white/5">
               <LockIcon />

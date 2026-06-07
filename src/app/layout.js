@@ -10,7 +10,7 @@ const play = Play({
 
 export const metadata = {
   title: "CSI-SUMMER2026",
-  description: "Phase 1 & 2 Evaluation",
+  description: "Club Of Sustainability and Innovation",
 };
 
 export default function RootLayout({ children }) {
