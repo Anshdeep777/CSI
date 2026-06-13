@@ -226,10 +226,10 @@ export default function SparkleBackground() {
             }}
           >
             <div className="animate-custom-marquee text-[11px] sm:text-xs font-bold tracking-widest text-zinc-300 uppercase">
-              ⚡ ASSIGNMENT SUBMISSIONS ARE NOW OPEN!
-              &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp; 🏆 MAJOR TASK DEADLINE:
-              SATURDAY, 13/06/26 (EOD) &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp; 🚀
-              WEEK 01 IS LIVE! &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+              WEEK 02 IS LIVE! &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+              ⚡ RESOURCES ARE READY FOR WEEK02! 
+              &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp; 🏆DEADLINES WILL BE ANNOUNCED SOON!  &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp; 🚀
+              
             </div>
           </div>
         </div>

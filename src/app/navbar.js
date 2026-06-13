@@ -61,6 +61,7 @@ export default function Navbar() {
   const weekOptions = [
     { label: "All weeks", path: "/weeks" },
     { label: "Week01", path: "/weeks/01" },
+    { label: "Week02", path: "/weeks/02" },
   ];
 
   return (

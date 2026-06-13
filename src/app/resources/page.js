@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from "react";
 
-// Inline SVG Document Icon
 const DocumentIcon = ({ className = "w-6 h-6 text-zinc-400" }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +52,7 @@ const Page = () => {
       driveLink: "https://drive.google.com/file/d/16wxLS3rMITJLarjm-gzM9kEJ85LQPj0D/view?usp=sharing",
       week: "week01",
     },
-     {
+    {
       id: 5,
       title: "Global Sustainability Drivers",
       imageUrl: "/five.png",
@@ -74,14 +73,71 @@ const Page = () => {
       driveLink: "https://drive.google.com/file/d/1nXKtu4KBEj8oYxL_hr8CdnI54aKgNT1b/view?usp=sharing",
       week: "week01",
     },
+    // Week 02
+    {
+      id: 8,
+      title: "Carbon Accounting & GHG Baselines",
+      imageUrl: "/one.png",
+      driveLink: "https://drive.google.com/file/d/1M66tyh-AYabr4Ksr97O6yU_NwmKFhoh1/view?usp=drive_link",
+      week: "week02",
+    },
+    {
+      id: 9,
+      title: "Comparing Sustainable Alternatives",
+      imageUrl: "/two.png",
+      driveLink: "https://drive.google.com/file/d/1agzPqR0vwC1XodyIl87XPGpIKAxme4up/view?usp=drive_link",
+      week: "week02",
+    },
+    {
+      id: 10,
+      title: "Cradle-to-Grave Analysis & Product Stages",
+      imageUrl: "/three.png",
+      driveLink: "https://drive.google.com/file/d/12Cr9k48ptHo3EGlL9EOOdTcUAxwxNP1a/view?usp=drive_link",
+      week: "week02",
+    },
+    {
+      id: 11,
+      title: "Life Cycle Assessment",
+      imageUrl: "/four.png",
+      driveLink: "https://drive.google.com/file/d/1uUw-OuSB-qOhQNrx9vcljAKj_aNzgnSX/view?usp=drive_link",
+      week: "week02",
+    },
+    {
+      id: 12,
+      title: "Linear vs. Circular Economic Models",
+      imageUrl: "/five.png",
+      driveLink: "https://drive.google.com/file/d/1AnA7LjEoyXqEBgkBvneQ0m_yNImncKIq/view?usp=drive_link",
+      week: "week02",
+    },
+    {
+      id: 13,
+      title: "Locating Environmental Hotspots",
+      imageUrl: "/six.png",
+      driveLink: "https://drive.google.com/file/d/14UPLZ6XijwydAThJdpsKYXLh-9o_gDMx/view?usp=drive_link",
+      week: "week02",
+    },
+    {
+      id: 14,
+      title: "Scope 1-2-3 Emissions",
+      imageUrl: "/seven.png",
+      driveLink: "https://drive.google.com/file/d/1zbiuTt2tVnIKweLzJEWqTWQbibhMUP-o/view?usp=drive_link",
+      week: "week02",
+    },
+    {
+      id: 15,
+      title: "The Principles of Reuse, Repair, and Recycling",
+      imageUrl: "/eight.png",
+      driveLink: "https://drive.google.com/file/d/12A-l73fULUY_txcjY-LkoWC1f94SqcYi/view?usp=drive_link",
+      week: "week02",
+    },
   ];
 
   const filteredDocs = documents.filter((doc) => doc.week === activeWeek);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-950 via-black to-zinc-900 mt-10 px-6 py-12 flex flex-col items-center mt-10">
+    <div className="min-h-screen bg-gradient-to-br from-zinc-950 via-black to-zinc-900 mt-10 px-6 py-12 flex flex-col items-center">
       
-      {/* Story-Based Page Heading */}
+      {/* Page Heading */}
       <div className="text-center mb-10 md:mb-12 max-w-2xl mt-6 w-full">
         <div className="flex items-center justify-center gap-3 text-[10px] md:text-xs text-zinc-400 font-bold tracking-widest uppercase mb-4">
           <DocumentIcon />
@@ -98,7 +154,7 @@ const Page = () => {
         </p>
       </div>
 
-      {/* Week Filter Toggle & Highlighted Mother Link */}
+      {/* Week Filter Toggle & Mother Link */}
       <div className="flex flex-col items-center mb-12">
         <div className="flex gap-4 bg-zinc-900/50 p-1.5 rounded-full border border-white/10 backdrop-blur-md">
           <button
@@ -122,9 +178,9 @@ const Page = () => {
             Week 02
           </button>
         </div>
+
         
-        {/* Highlighted Mother Link Button */}
-        <a 
+        <a
           href="https://drive.google.com/drive/folders/1FFmrwthLLzjJBJz9aVwlxzTC6wO8PoYK"
           target="_blank"
           rel="noopener noreferrer"
@@ -140,54 +196,36 @@ const Page = () => {
         </a>
       </div>
 
-      {/* Conditional Rendering: Grid or Empty State */}
-      {filteredDocs.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-10 justify-items-center max-w-7xl w-full mx-auto">
-          {filteredDocs.map((doc) => (
-            <a
-              key={doc.id}
-              href={doc.driveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-[260px] overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-600/20 via-zinc-800/40 to-black/60 backdrop-blur-xl border-t border-l border-white/20 border-b border-r border-black/80 shadow-[12px_12px_24px_rgba(0,0,0,0.9),inset_1px_1px_2px_rgba(255,255,255,0.2)] transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-[16px_16px_32px_rgba(0,0,0,1),inset_2px_2px_4px_rgba(255,255,255,0.3)] hover:from-zinc-500/30 group"
-            >
-              <div className="h-[280px] w-full p-2 bg-black/20 relative">
-                <img
-                  src={doc.imageUrl}
-                  alt={doc.title}
-                  className="h-full w-full object-cover rounded-2xl shadow-inner transition-transform duration-500 group-hover:scale-[1.02]"
-                />
-                <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md p-1.5 rounded-full border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <DocumentIcon />
-                </div>
-              </div>
+      {/* Document Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-10 justify-items-center max-w-7xl w-full mx-auto">
+        {filteredDocs.map((doc) => (
+          <a
+            key={doc.id}
+            href={doc.driveLink || "#"}
+            target={doc.driveLink ? "_blank" : "_self"}
+            rel="noopener noreferrer"
+            className="w-[260px] overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-600/20 via-zinc-800/40 to-black/60 backdrop-blur-xl border-t border-l border-white/20 border-b border-r border-black/80 shadow-[12px_12px_24px_rgba(0,0,0,0.9),inset_1px_1px_2px_rgba(255,255,255,0.2)] transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-[16px_16px_32px_rgba(0,0,0,1),inset_2px_2px_4px_rgba(255,255,255,0.3)] hover:from-zinc-500/30 group"
+          >
+            <div className="h-[280px] w-full p-2 bg-black/20 relative">
+              <img
 
-              <div className="p-5 bg-gradient-to-t from-black/80 to-transparent">
-                <h2 className="text-center text-zinc-300 font-medium text-lg tracking-wide drop-shadow-lg">
-                  {doc.title}
-                </h2>
+                src={doc.imageUrl}
+                alt={doc.title}
+                className="h-full w-full object-cover rounded-2xl shadow-inner transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+              <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md p-1.5 rounded-full border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <DocumentIcon />
               </div>
-            </a>
-          ))}
-        </div>
-      ) : (
-        /* Empty State for Week 02 */
-        <div className="flex flex-col items-center justify-center w-full py-24 border border-dashed border-white/10 rounded-[36px] bg-zinc-900/30 max-w-4xl mx-auto backdrop-blur-sm">
-          <div className="bg-white/5 p-4 rounded-full mb-4">
-            <DocumentIcon className="w-8 h-8 text-zinc-600" />
-          </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-zinc-400 tracking-wide uppercase mb-2">
-            Restricted Clearance
-          </h3>
-          <p className="text-sm text-zinc-500 max-w-sm text-center tracking-wide leading-relaxed">
-            Week 02 operational documents are currently locked. System will deploy assets when clearance is granted.
-          </p>
-          <span className="mt-6 bg-white/5 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-bold tracking-wider text-zinc-500 uppercase border border-white/5">
-            🔒 Encrypted
-          </span>
-        </div>
-      )}
-      
+            </div>
+
+            <div className="p-5 bg-gradient-to-t from-black/80 to-transparent">
+              <h2 className="text-center text-zinc-300 font-medium text-lg tracking-wide drop-shadow-lg">
+                {doc.title}
+              </h2>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
   );
 };

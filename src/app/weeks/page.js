@@ -56,11 +56,11 @@ const Page = () => {
           
           <div className="absolute bottom-0 left-0 w-full p-6 z-20 flex flex-col gap-3.5">
             <div>
-              <p className='text-green-400 text-xs font-black tracking-widest uppercase mb-1 animate-pulse'>Deployment Active</p>
+              <p className='text-green-400 text-xs font-black tracking-widest uppercase mb-1 animate-pulse'>Active Now</p>
               <h2 className="text-xl sm:text-2xl font-bold text-white tracking-wide uppercase">
                 Week 01: Welcome To The Chaos
               </h2>
-              <p className="text-xs text-zinc-400 font-light mt-2 leading-relaxed">
+              <p className="text-xs text-white/80 font-bold mt-2 leading-relaxed">
                 Drop directly into a high-pressure secure terminal where corporate survival violently collides with macro sustainability frameworks
               </p>
             </div>
@@ -75,6 +75,44 @@ const Page = () => {
             </div>
             
             <button className="w-full bg-green-500 text-black font-bold py-3 px-4 rounded-full text-sm transition-transform active:scale-[0.98] hover:bg-green-400 shadow-[0_0_15px_rgba(34,197,94,0.4)]">
+              Explore 
+            </button>
+          </div>
+        </div>
+
+
+        <div 
+          onClick={() => router.push('/weeks/02')}
+          className="w-full max-w-[380px] h-[500px] sm:h-[520px] rounded-[36px] relative overflow-hidden bg-zinc-900 border border-red-500/30 shadow-[0_0_30px_rgba(34,197,94,0.15)] group transition-all duration-300 hover:border-red-400/60 hover:shadow-[0_0_40px_rgba(34,197,94,0.3)] cursor-pointer"
+        >
+          <img 
+            src='/posterweek2.png' 
+            className='absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'
+            alt="Active Operational Objective"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent z-10" />
+          
+          <div className="absolute bottom-0 left-0 w-full p-6 z-20 flex flex-col gap-3.5">
+            <div>
+              <p className='text-red-500 text-xs font-black tracking-widest uppercase mb-1 animate-pulse'>Active Now</p>
+              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-wide uppercase">
+                Week 02: The Plastic Bomb
+              </h2>
+              <p className="text-xs text-white/80 font-bold mt-2 leading-relaxed">
+                Sprint faces a critical 60-day ultimatum from SnackCo to overhaul its plastic packaging or risk losing their entire product line. To avert this crisis, we must urgently cut through the PR and deliver hard environmental footprint data paired with concrete, deployable solutions!
+              </p>
+            </div>
+            
+            <div className="flex flex-wrap gap-2 items-center">
+              <span className="bg-red-500/20 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black tracking-wider text-red-500 uppercase border border-red-500/40">
+                Unlocked
+              </span>
+              <span className="bg-white/5 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold tracking-wider text-zinc-300 border border-white/10">
+                #WEEK02
+              </span>
+            </div>
+            
+            <button className="w-full bg-red-500  font-bold py-3 px-4 rounded-full text-sm transition-transform active:scale-[0.98] hover:bg-red-400 shadow-[0_0_15px_rgba(34,197,94,0.4)]">
               Explore 
             </button>
           </div>
