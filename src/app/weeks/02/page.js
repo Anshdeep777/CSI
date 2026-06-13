@@ -198,9 +198,9 @@ export default function Page() {
                 <div className="relative z-10 w-full space-y-4 p-6 md:p-8 font-sans">
                   <h1 className="text-3xl md:text-5xl font-black tracking-wide text-white">WEEK 02:</h1>
                   <h1 className="text-3xl md:text-5xl text-red-500 font-[600] tracking-wide leading-tight">THE PLASTIC BOMB</h1>
-                  <p className="text-xs md:text-lg text-gray-400">Sub | Dub • Drama, Fantasy, Supernatural</p>
+                  
                   <p className="text-xs md:text-lg text-gray-300 leading-relaxed">
-                    As an orphan, Yukito Yanagi's life is filled with questions, but that all changed when he meets his father's disciple...
+                    SnackCo just gave us exactly 60 days to fix our plastic packaging, or they pull their entire product line from our dark stores...
                   </p>
                 </div>
               </div>
