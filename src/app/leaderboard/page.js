@@ -2,12 +2,11 @@
 
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
-import { File } from "lucide-react";
 
 const students = [
-  { rank: 1, name: "1st Position", rollNo: "SAMPLE-01" },
-  { rank: 2, name: "2nd Position", rollNo: "SAMPLE-02" },
-  { rank: 3, name: "3rd Position", rollNo: "SAMPLE-03" },
+  { rank: 1, name: "Rajbir Sarkar", rollNo: "First" },
+  { rank: 2, name: "Punitha N M", rollNo: "Second" },
+  { rank: 3, name: "Sarah Faiyaz", rollNo: "Third" },
 ];
 
 const podiumColors = {
@@ -46,9 +45,8 @@ export default function LeaderboardPage() {
   const [mounted, setMounted] = useState(false);
   
   const containerRef = useRef(null);
+  const titleRef = useRef(null);
   const podiumRefs = useRef([]);
-  const tableRef = useRef(null);
-  const rowRefs = useRef([]);
   const fabRef = useRef(null);
   
   const canvasRef = useRef(null);
@@ -62,20 +60,14 @@ export default function LeaderboardPage() {
       const tl = gsap.timeline({ delay: 0.2 });
 
       tl.fromTo(
+        titleRef.current,
+        { y: -30, opacity: 0, scale: 0.95 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }
+      )
+      .fromTo(
         podiumRefs.current,
         { y: 80, opacity: 0, scale: 0.9, rotationX: 15 },
-        { y: 0, opacity: 1, scale: 1, rotationX: 0, duration: 0.8, stagger: 0.15, ease: "back.out(1.2)" }
-      )
-      .fromTo(
-        tableRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
-        "-=0.4"
-      )
-      .fromTo(
-        rowRefs.current,
-        { x: -30, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: "power2.out" },
+        { y: 0, opacity: 1, scale: 1, rotationX: 0, duration: 0.8, stagger: 0.15, ease: "back.out(1.2)" },
         "-=0.4"
       )
       .fromTo(
@@ -198,17 +190,17 @@ export default function LeaderboardPage() {
   const top3 = [students[1], students[0], students[2]]; 
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#06060c] text-white font-sans overflow-x-hidden relative opacity-100 py-10">
+    <div ref={containerRef} className="min-h-screen bg-[#06060c] text-white font-sans overflow-x-hidden relative opacity-100 py-10 flex flex-col justify-center">
       
       <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-[100]" style={{ width: '100%', height: '100%' }} />
 
       <button 
         ref={fabRef}
         onClick={triggerFireworks}
-        className="fixed bottom-6 right-6 z-[110] bg-gradient-to-br from-purple-500 to-indigo-700 text-white rounded-full p-4 shadow-[0_0_30px_rgba(99,102,241,0.5)] transition-colors duration-300 hover:scale-110 active:scale-95 flex items-center justify-center group opacity-0 border border-indigo-400/30"
+        className="fixed bottom-6 right-6 z-[110] bg-gradient-to-br from-purple-500 to-indigo-700 text-white rounded-full p-3 md:p-4 shadow-[0_0_30px_rgba(99,102,241,0.5)] transition-colors duration-300 hover:scale-110 active:scale-95 flex items-center justify-center group opacity-0 border border-indigo-400/30"
         title="Burst Crackers!"
       >
-        <span className="text-xl md:text-2xl font-bold flex items-center gap-2 group-hover:animate-pulse">
+        <span className="text-lg md:text-2xl font-bold flex items-center gap-2 group-hover:animate-pulse">
           🎆 <span className="hidden sm:inline">Crackers!!</span>
         </span>
       </button>
@@ -231,11 +223,34 @@ export default function LeaderboardPage() {
         ))}
       </div>
 
-      <div className="relative z-10 pt-16 pb-0 perspective-[1000px]">
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-indigo-950/40 to-transparent pointer-events-none" />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-1.5 bg-indigo-500/30 blur-md rounded-full" />
+      {/* METALLIC CONGRATULATIONS TITLE */}
+      <div ref={titleRef} className="relative z-20 text-center mb-8 px-4 opacity-0 mt-[-20px] sm:mt-[-40px]">
+        <h1 
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-widest bg-clip-text text-transparent bg-gradient-to-b from-[#fff5c3] via-[#d4af37] to-[#8b6508]"
+          style={{
+            filter: "drop-shadow(0px 8px 10px rgba(0,0,0,0.8))",
+            WebkitTextStroke: "1px rgba(255,255,255,0.2)"
+          }}
+        >
+          Congratulations
+        </h1>
+        <h2 
+          className="text-xl sm:text-2xl md:text-3xl mt-2 sm:mt-3 font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] bg-clip-text text-transparent bg-gradient-to-r from-[#808080] via-[#ffffff] to-[#808080]"
+          style={{
+            filter: "drop-shadow(0px 4px 6px rgba(0,0,0,0.9))",
+            WebkitTextStroke: "0.5px rgba(255,255,255,0.1)"
+          }}
+        >
+          To The Winners
+        </h2>
+      </div>
 
-        <div className="flex justify-center items-end gap-4 md:gap-8 px-4 pb-0">
+      <div className="relative z-10 pt-6 sm:pt-10 pb-0 perspective-[1000px]">
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-indigo-950/40 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] h-1.5 bg-indigo-500/30 blur-md rounded-full" />
+
+        {/* PODIUM WRAPPER WITH RESPONSIVE GAPS */}
+        <div className="flex justify-center items-end gap-2 sm:gap-4 md:gap-8 px-2 sm:px-4 pb-0">
           {top3.map((student, index) => {
             const style = podiumColors[student.rank];
             const isFirst = student.rank === 1;
@@ -246,10 +261,9 @@ export default function LeaderboardPage() {
                 ref={(el) => (podiumRefs.current[index] = el)}
                 onMouseEnter={() => handleCardHover(index, true)}
                 onMouseLeave={() => handleCardHover(index, false)}
-                className={`relative flex flex-col items-center rounded-xl bg-gradient-to-br ${style.metalMain} p-[2px] opacity-0 cursor-default shadow-[0_10px_20px_rgba(0,0,0,0.5)]`}
+                // RESPONSIVE WIDTHS AND MARGINS ADDED HERE
+                className={`relative flex flex-col items-center rounded-xl bg-gradient-to-br ${style.metalMain} p-[1px] sm:p-[2px] opacity-0 cursor-default shadow-[0_10px_20px_rgba(0,0,0,0.5)] ${isFirst ? 'w-[105px] sm:w-[150px] md:w-[190px] mb-0' : 'w-[90px] sm:w-[130px] md:w-[160px] mb-4 sm:mb-6'}`}
                 style={{
-                  width: isFirst ? 190 : 160,
-                  marginBottom: isFirst ? 0 : 20,
                   transformStyle: "preserve-3d"
                 }}
               >
@@ -263,11 +277,11 @@ export default function LeaderboardPage() {
                 >
                   <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/brushed-alum.png')] pointer-events-none mix-blend-overlay"></div>
 
-                  <div className="text-center mb-6 relative z-10">
-                    <div className="text-3xl mb-1 filter drop-shadow-md">{style.crown}</div>
+                  <div className="text-center mb-4 sm:mb-6 relative z-10">
+                    <div className="text-2xl sm:text-3xl mb-1 filter drop-shadow-md">{style.crown}</div>
                     
                     <div 
-                      className={`font-black ${isFirst ? "text-3xl" : "text-xl"} ${style.engraveColor} uppercase tracking-widest`}
+                      className={`font-black ${isFirst ? "text-xl sm:text-2xl md:text-3xl" : "text-lg sm:text-xl"} ${style.engraveColor} uppercase tracking-widest`}
                       style={{
                         textShadow: "1px 1px 1px rgba(255,255,255,0.1), -1px -1px 2px rgba(0,0,0,0.9)"
                       }}
@@ -276,15 +290,15 @@ export default function LeaderboardPage() {
                     </div>
                   </div>
 
-                  <div className="text-center w-full px-2 relative z-10">
+                  <div className="text-center w-full px-1 sm:px-2 relative z-10 flex flex-col items-center">
                     <div 
-                      className={`font-bold tracking-wider uppercase text-gray-400 ${isFirst ? "text-[13px]" : "text-[11px]"}`}
+                      className={`font-bold tracking-wider uppercase text-gray-400 w-full truncate ${isFirst ? "text-[10px] sm:text-[12px] md:text-[13px]" : "text-[9px] sm:text-[11px]"}`}
                       style={{ textShadow: "1px 1px 1px rgba(255,255,255,0.05), -1px -1px 1px rgba(0,0,0,0.8)" }}
                     >
                       {student.name}
                     </div>
                     <div 
-                      className="text-[9px] text-gray-600 mt-2 font-mono tracking-[0.2em]"
+                      className="text-[7px] sm:text-[9px] text-gray-600 mt-1 sm:mt-2 font-mono tracking-[0.1em] sm:tracking-[0.2em] w-full truncate"
                       style={{ textShadow: "1px 1px 0px rgba(255,255,255,0.03), -1px -1px 1px rgba(0,0,0,0.8)" }}
                     >
                       {student.rollNo}
@@ -303,64 +317,6 @@ export default function LeaderboardPage() {
             background: "radial-gradient(ellipse 70% 100% at 50% 100%, #110e1a 50%, transparent 100%)",
           }}
         />
-      </div>
-
-      <div className="relative z-10 mx-4 md:mx-10 mb-24 mt-4">
-        <div ref={tableRef} className="rounded-2xl border border-white/5 bg-[#111118]/80 backdrop-blur-xl shadow-[0_15px_50px_rgba(0,0,0,0.6)] overflow-hidden opacity-0">
-          <div className="flex items-center gap-4 px-6 py-5 border-b border-white/5 bg-white/[0.01]">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-800 flex items-center justify-center text-xl shadow-[inset_0_2px_4px_rgba(255,255,255,0.2)]">
-              🏆
-            </div>
-            <File className="w-7 h-7 text-gray-400" />
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-white/5 text-gray-500 text-[11px] uppercase tracking-widest bg-black/40">
-                  <th className="pl-6 pr-4 py-5 text-left font-semibold">Rank</th>
-                  <th className="px-4 py-5 text-left font-semibold">Name</th>
-                  <th className="px-4 py-5 text-left font-semibold">Roll No</th>
-                  
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5">
-                {students.map((student, index) => {
-                  return (
-                    <tr
-                      key={student.rank}
-                      ref={(el) => (rowRefs.current[index] = el)}
-                      className="transition-colors opacity-0 hover:bg-white/[0.02]"
-                    >
-                      <td className="pl-6 pr-4 py-4">
-                        <span
-                          className={`font-black text-lg ${
-                            student.rank === 1
-                              ? "text-yellow-500 drop-shadow-[0_0_8px_rgba(234,179,8,0.3)]"
-                              : student.rank === 2
-                              ? "text-gray-400 drop-shadow-[0_0_8px_rgba(156,163,175,0.3)]"
-                              : student.rank === 3
-                              ? "text-orange-500 drop-shadow-[0_0_8px_rgba(249,115,22,0.3)]"
-                              : "text-gray-600"
-                          }`}
-                        >
-                          #{String(student.rank).padStart(2, "0")}
-                        </span>
-                      </td>
-                      <td className="px-4 py-4">
-                        <span className="font-semibold text-gray-200 text-sm tracking-wide">{student.name}</span>
-                      </td>
-                      <td className="px-4 py-4 text-gray-500 font-mono text-xs tracking-widest">{student.rollNo}</td>
-                      <td className="px-4 py-4">
-                        
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
       </div>
 
       <style>{`
