@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { 
   BookOpen, 
   ListTodo, 
@@ -13,61 +13,17 @@ import {
 } from 'lucide-react';
 
 /* ──────────────── HOOKS & HELPERS ──────────────── */
-function useTypewriter(lines, delay = 0, speed = 28) {
-  const [displayed, setDisplayed] = useState(lines.map(() => ""));
-  const [started, setStarted] = useState(false);
-  const ref = useRef(null);
+// Removed useTypewriter hook
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) setStarted(true); },
-      { threshold: 0.3 }
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!started) return;
-    let lineIdx = 0;
-    let charIdx = 0;
-    let timeout;
-
-    const tick = () => {
-      if (lineIdx >= lines.length) return;
-      const line = lines[lineIdx];
-      if (charIdx <= line.length) {
-        setDisplayed(prev => {
-          const next = [...prev];
-          next[lineIdx] = line.slice(0, charIdx);
-          return next;
-        });
-        charIdx++;
-        timeout = setTimeout(tick, speed);
-      } else {
-        lineIdx++;
-        charIdx = 0;
-        timeout = setTimeout(tick, 380);
-      }
-    };
-
-    timeout = setTimeout(tick, delay);
-    return () => clearTimeout(timeout);
-  }, [started, lines, delay, speed]);
-
-  return { displayed, ref };
-}
-
-function TypewriterBlock({ lines, delay = 0, speed = 22, speakers, speakerColors }) {
-  const { displayed, ref } = useTypewriter(lines, delay, speed);
+function TextBlock({ lines, speakers, speakerColors }) {
   return (
-    <div ref={ref} className="space-y-4">
-      {lines.map((_, i) => (
+    <div className="space-y-4">
+      {lines.map((line, i) => (
         <p key={i} className="flex items-start gap-2 text-xs md:text-sm lg:text-base leading-relaxed tracking-wide min-h-[1.4em]">
-          {speakers[i] && (
+          {speakers && speakers[i] && (
             <span className="font-bold shrink-0" style={{ color: speakerColors[i] }}>{speakers[i]}</span>
           )}
-          <span>{displayed[i]}<span className="animate-pulse opacity-60">{displayed[i].length < lines[i].length && displayed[i] !== "" ? "▋" : ""}</span></span>
+          <span>{line}</span>
         </p>
       ))}
     </div>
@@ -173,8 +129,7 @@ export default function InteractiveESGModule() {
                 <div className="relative overflow-hidden pt-2">
                   <div className="absolute top-0 left-0 w-[2px] h-full bg-gradient-to-b from-red-500 to-orange-500" />
                   <div className="pl-4 md:pl-6">
-                    <TypewriterBlock
-                      delay={600}
+                    <TextBlock
                       lines={[
                         "Have you seen the billboards? Instantly just launched a nationwide campaign claiming their entire 10-minute delivery network is '100% Eco-Friendly' and 'Carbon Neutral.'",
                         "We are losing market share by the hour. I want our PR team to launch a counter-campaign immediately using the packaging data you collected last week.",
@@ -196,8 +151,7 @@ export default function InteractiveESGModule() {
                 <SectionHeader accent="#10b981" channel="> CLIENT ESCALATION" from="GreenEdge Manager" tag="[ Strategy Pod ]" tagColor="#059669" />
                 <ContextBar accent="#10b981" label="AVOIDING REGULATORY BACKLASH" />
                 <div style={glassStyle} className="relative overflow-hidden pt-2 p-6 rounded-2xl">
-                  <TypewriterBlock
-                    delay={300}
+                  <TextBlock
                     lines={[
                       "Aryan is panicking and about to make a fatal mistake. If he launches unverified sustainability claims to fight Instantly, the regulators and GreenBridge Capital will tear Sprint apart. We need to expose the competitor's lies and teach the board how real ESG reporting works.",
                       "First, you need to understand what constitutes a false claim. Open the asset on Greenwashing. You must learn the primary warning signs: vague language like 'eco-friendly', hidden trade-offs where a company focuses on a minor green attribute while ignoring massive systemic pollution, and a lack of third-party verification.",
@@ -208,10 +162,10 @@ export default function InteractiveESGModule() {
                   />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                  <a href="https://drive.google.com/file/d/1baDzzwzpyMVLZsggFOU9f8rZIGxdMLds/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="w-full block hover:opacity-90">
+                  <a href="https://drive.google.com/file/d/1irRumvd6zKGRO0hYc7ptlxpg-IN7JCGy/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="w-full block hover:opacity-90">
                     <Btn3D color="#10b981" shadow="#065f46" icon={<LuAlertTriangle size={15} />} label="📊 ASSET: Greenwashing & False Claims" />
                   </a>
-                  <a href="https://drive.google.com/file/d/1O6IqKA2xzGrX8vkjShID4IhDsELijda7/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="w-full block hover:opacity-90">
+                  <a href="https://drive.google.com/file/d/1jAkmeBx6394bWMxQ7qw2VYvtJbQxio9t/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="w-full block hover:opacity-90">
                     <Btn3D color="#10b981" shadow="#065f46" icon={<LuFolderSearch size={15} />} label="📄 DOSSIER: ESG Fundamentals & Frameworks" />
                   </a>
                 </div>
@@ -228,8 +182,7 @@ export default function InteractiveESGModule() {
                 <SectionHeader accent="#06b6d4" channel="> MANAGER DIRECTIVE" from="GreenEdge Manager" />
                 <ContextBar accent="#06b6d4" label="THE GREENWASHING AUDIT (MONDAY EOD)" />
                 <div style={glassStyle} className="relative overflow-hidden pt-2 p-6 rounded-2xl">
-                  <TypewriterBlock
-                    delay={300}
+                  <TextBlock
                     lines={[
                       "It is time to neutralize the threat. Your first directive is to analyze Instantly's '100% Carbon Neutral Delivery' claim.",
                       "You must identify two specific 'Sins of Greenwashing' present in their marketing and submit a brief paragraph to Aryan explaining exactly why this campaign represents a massive regulatory liability.",
@@ -255,8 +208,7 @@ export default function InteractiveESGModule() {
                 <SectionHeader accent="#a855f7" channel="> EXECUTIVE ALIGNMENT" from="Priya Nair & Manager" />
                 <ContextBar accent="#a855f7" label="PRIORITIZING THE CRISIS" />
                 <div style={glassStyle} className="relative overflow-hidden pt-2 p-6 rounded-2xl">
-                  <TypewriterBlock
-                    delay={300}
+                  <TextBlock
                     lines={[
                       "Okay, Aryan is backing down from the PR stunt. But GreenBridge Capital is sending in their auditors next week. We have gig-worker safety issues, plastic waste, dark-store emissions, and supply chain threats. We cannot fix them all simultaneously. What do we actually prioritize?",
                       "Priya is right. Treating a paper recycling program with the same weight as gig-worker fatalities is amateurish and will instantly spook institutional investors. You need to deploy a Materiality Assessment. Learn how to use the two axes: Stakeholder Expectations (importance to investors and communities) and Business Impact (risks to revenue and operations).",
@@ -267,10 +219,10 @@ export default function InteractiveESGModule() {
                   />
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <a href="https://drive.google.com/file/d/10ONabsfHO75j6aq5C1dJ18cgwHT77McU/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="w-full block hover:opacity-90">
+                  <a href="https://drive.google.com/file/d/1baDzzwzpyMVLZsggFOU9f8rZIGxdMLds/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="w-full block hover:opacity-90">
                     <Btn3D color="#a855f7" shadow="#4c1d95" icon={<LuBrainCircuit size={15} />} label="🧠 ASSET: The Materiality Assessment" />
                   </a>
-                  <a href="https://drive.google.com/file/d/1irRumvd6zKGRO0hYc7ptlxpg-IN7JCGy/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="w-full block hover:opacity-90">
+                  <a href="https://drive.google.com/file/d/1O6IqKA2xzGrX8vkjShID4IhDsELijda7/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="w-full block hover:opacity-90">
                     <Btn3D color="#a855f7" shadow="#4c1d95" icon={<LuGlobe size={15} />} label="🌍 DOSSIER: Understanding Climate Risk" />
                   </a>
                 </div>
@@ -300,8 +252,7 @@ export default function InteractiveESGModule() {
                 </div>
 
                 <div style={glassStyle} className="relative overflow-hidden pt-2 p-6 rounded-2xl">
-                  <TypewriterBlock
-                    delay={300}
+                  <TextBlock
                     lines={[
                       "GreenBridge Capital requires a formalized overview of Sprint's most critical sustainability risks.",
                       "You must plot five distinct sustainability issues on a Materiality Matrix (Stakeholder Concern vs. Business Impact).",
@@ -314,7 +265,7 @@ export default function InteractiveESGModule() {
                 </div>
                 <div className="pt-4">
                   <a
-                    href="https://drive.google.com/file/d/1jAkmeBx6394bWMxQ7qw2VYvtJbQxio9t/view?usp=sharing"
+                    href="https://drive.google.com/file/d/10ONabsfHO75j6aq5C1dJ18cgwHT77McU/view?usp=sharing"
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="relative w-full flex items-center justify-center gap-3 px-6 py-5 text-sm md:text-lg font-black uppercase tracking-[0.2em] text-white rounded-xl transition-all duration-100 hover:opacity-90"

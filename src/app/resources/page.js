@@ -138,42 +138,28 @@ const Page = () => {
       id: 16,
       title: "Greenwashing & False Claims",
       imageUrl: "/one.png",
-      driveLink: "https://drive.google.com/file/d/1baDzzwzpyMVLZsggFOU9f8rZIGxdMLds/view?usp=sharing",
+      driveLink: "https://drive.google.com/file/d/1irRumvd6zKGRO0hYc7ptlxpg-IN7JCGy/view?usp=sharing",
       week: "week03",
     },
     {
       id: 17,
       title: "ESG Fundamentals & Frameworks",
       imageUrl: "/two.png",
-      driveLink: "https://drive.google.com/file/d/1O6IqKA2xzGrX8vkjShID4IhDsELijda7/view?usp=sharing",
+      driveLink: "https://drive.google.com/file/d/1jAkmeBx6394bWMxQ7qw2VYvtJbQxio9t/view?usp=sharing",
       week: "week03",
     },
     {
       id: 18,
-      title: "Minor Assignment Week 3",
+      title: "The Materiality Assessment",
       imageUrl: "/three.png",
-      driveLink: "https://drive.google.com/file/d/1_jzmFEZYqJN70xpizhOMpkYNMpAlZjXw/view?usp=sharing",
+      driveLink: "https://drive.google.com/file/d/1baDzzwzpyMVLZsggFOU9f8rZIGxdMLds/view?usp=sharing",
       week: "week03",
     },
     {
       id: 19,
-      title: "The Materiality Assessment",
-      imageUrl: "/four.png",
-      driveLink: "https://drive.google.com/file/d/10ONabsfHO75j6aq5C1dJ18cgwHT77McU/view?usp=sharing",
-      week: "week03",
-    },
-    {
-      id: 20,
       title: "Understanding Climate Risk",
-      imageUrl: "/five.png",
-      driveLink: "https://drive.google.com/file/d/1irRumvd6zKGRO0hYc7ptlxpg-IN7JCGy/view?usp=sharing",
-      week: "week03",
-    },
-    {
-      id: 21,
-      title: "Major Assignment Week 3",
-      imageUrl: "/six.png",
-      driveLink: "https://drive.google.com/file/d/1jAkmeBx6394bWMxQ7qw2VYvtJbQxio9t/view?usp=sharing",
+      imageUrl: "/four.png",
+      driveLink: "https://drive.google.com/file/d/1O6IqKA2xzGrX8vkjShID4IhDsELijda7/view?usp=sharing",
       week: "week03",
     }
   ];
@@ -264,7 +250,6 @@ const Page = () => {
           >
             <div className="h-[280px] w-full p-2 bg-black/20 relative">
               <img
-
                 src={doc.imageUrl}
                 alt={doc.title}
                 className="h-full w-full object-cover rounded-2xl shadow-inner transition-transform duration-500 group-hover:scale-[1.02]"
