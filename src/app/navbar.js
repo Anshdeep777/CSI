@@ -62,6 +62,7 @@ export default function Navbar() {
     { label: "All weeks", path: "/weeks" },
     { label: "Week01", path: "/weeks/01" },
     { label: "Week02", path: "/weeks/02" },
+     { label: "Week03", path: "/weeks/03" },
   ];
 
   return (

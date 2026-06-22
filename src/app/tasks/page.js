@@ -84,7 +84,31 @@ const Page = () => {
     }
   ];
 
-  const currentAssignments = activeWeek === "week01" ? week01Assignments : week02Assignments;
+  const week03Assignments = [
+    { 
+      id: 1, 
+      type: "Read for more info", 
+      title: "MINOR TASK", 
+      driveLink: "https://drive.google.com/file/d/1_jzmFEZYqJN70xpizhOMpkYNMpAlZjXw/view?usp=sharing",
+      submitLink: "#", // Replace with your actual Google Form URL for Week 3
+      isHighlight: false,
+      submissionOpen: false
+    },
+    { 
+      id: 2, 
+      type: "Read for more info", 
+      title: "MAJOR DELIVERABLE", 
+      driveLink: "https://drive.google.com/file/d/10ONabsfHO75j6aq5C1dJ18cgwHT77McU/view?usp=sharing",
+      submitLink: "#", // Replace with your actual Google Form URL for Week 3
+      isHighlight: true,
+      submissionOpen: false 
+    }
+  ];
+
+  const currentAssignments = 
+    activeWeek === "week01" ? week01Assignments : 
+    activeWeek === "week02" ? week02Assignments : 
+    week03Assignments;
 
   return (
     <div className="min-h-screen bg-black text-zinc-200 py-16 px-6 sm:px-12 font-sans selection:bg-cyan-900 selection:text-cyan-100 mt-10">
@@ -102,7 +126,7 @@ const Page = () => {
           </div>
 
           {/* Glassmorphism Week Toggle Switch */}
-          <div className="flex gap-2 bg-zinc-900/60 p-1.5 rounded-full border border-white/10 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.5)]">
+          <div className="flex flex-wrap justify-center gap-2 bg-zinc-900/60 p-1.5 rounded-full border border-white/10 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.5)]">
             <button
               onClick={() => setActiveWeek("week01")}
               className={`px-6 py-2 rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 ${
@@ -122,6 +146,16 @@ const Page = () => {
               }`}
             >
               Week 02
+            </button>
+            <button
+              onClick={() => setActiveWeek("week03")}
+              className={`px-6 py-2 rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 ${
+                activeWeek === "week03"
+                  ? "bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+                  : "text-zinc-500 hover:text-zinc-300"
+              }`}
+            >
+              Week 03
             </button>
           </div>
         </div>

@@ -24,6 +24,7 @@ const Page = () => {
   const [activeWeek, setActiveWeek] = useState("week01");
 
   const documents = [
+    // Week 01
     {
       id: 1,
       title: "The Fundamentals of Consulting",
@@ -73,6 +74,7 @@ const Page = () => {
       driveLink: "https://drive.google.com/file/d/1nXKtu4KBEj8oYxL_hr8CdnI54aKgNT1b/view?usp=sharing",
       week: "week01",
     },
+    
     // Week 02
     {
       id: 8,
@@ -130,6 +132,50 @@ const Page = () => {
       driveLink: "https://drive.google.com/file/d/12A-l73fULUY_txcjY-LkoWC1f94SqcYi/view?usp=drive_link",
       week: "week02",
     },
+
+    // Week 03
+    {
+      id: 16,
+      title: "Greenwashing & False Claims",
+      imageUrl: "/one.png",
+      driveLink: "https://drive.google.com/file/d/1baDzzwzpyMVLZsggFOU9f8rZIGxdMLds/view?usp=sharing",
+      week: "week03",
+    },
+    {
+      id: 17,
+      title: "ESG Fundamentals & Frameworks",
+      imageUrl: "/two.png",
+      driveLink: "https://drive.google.com/file/d/1O6IqKA2xzGrX8vkjShID4IhDsELijda7/view?usp=sharing",
+      week: "week03",
+    },
+    {
+      id: 18,
+      title: "Minor Assignment Week 3",
+      imageUrl: "/three.png",
+      driveLink: "https://drive.google.com/file/d/1_jzmFEZYqJN70xpizhOMpkYNMpAlZjXw/view?usp=sharing",
+      week: "week03",
+    },
+    {
+      id: 19,
+      title: "The Materiality Assessment",
+      imageUrl: "/four.png",
+      driveLink: "https://drive.google.com/file/d/10ONabsfHO75j6aq5C1dJ18cgwHT77McU/view?usp=sharing",
+      week: "week03",
+    },
+    {
+      id: 20,
+      title: "Understanding Climate Risk",
+      imageUrl: "/five.png",
+      driveLink: "https://drive.google.com/file/d/1irRumvd6zKGRO0hYc7ptlxpg-IN7JCGy/view?usp=sharing",
+      week: "week03",
+    },
+    {
+      id: 21,
+      title: "Major Assignment Week 3",
+      imageUrl: "/six.png",
+      driveLink: "https://drive.google.com/file/d/1jAkmeBx6394bWMxQ7qw2VYvtJbQxio9t/view?usp=sharing",
+      week: "week03",
+    }
   ];
 
   const filteredDocs = documents.filter((doc) => doc.week === activeWeek);
@@ -156,7 +202,7 @@ const Page = () => {
 
       {/* Week Filter Toggle & Mother Link */}
       <div className="flex flex-col items-center mb-12">
-        <div className="flex gap-4 bg-zinc-900/50 p-1.5 rounded-full border border-white/10 backdrop-blur-md">
+        <div className="flex gap-4 bg-zinc-900/50 p-1.5 rounded-full border border-white/10 backdrop-blur-md flex-wrap justify-center">
           <button
             onClick={() => setActiveWeek("week01")}
             className={`px-6 py-2 rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 ${
@@ -176,6 +222,16 @@ const Page = () => {
             }`}
           >
             Week 02
+          </button>
+          <button
+            onClick={() => setActiveWeek("week03")}
+            className={`px-6 py-2 rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 ${
+              activeWeek === "week03"
+                ? "bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+                : "text-zinc-500 hover:text-zinc-300"
+            }`}
+          >
+            Week 03
           </button>
         </div>
 
