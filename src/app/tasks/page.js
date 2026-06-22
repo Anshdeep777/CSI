@@ -69,18 +69,18 @@ const Page = () => {
       type: "Read for more info", 
       title: "MINOR TASK", 
       driveLink: "/Minor Assignment Week 2.pdf", // Replace with actual Drive link if needed
-      submitLink: "#",
+      submitLink: "https://forms.gle/TJZgcx18X9xtPxUu6",
       isHighlight: false,
-      submissionOpen: false // Disables the button automatically
+      submissionOpen: true // Disables the button automatically
     },
     { 
       id: 2, 
       type: "Read for more info", 
       title: "MAJOR DELIVERABLE", 
       driveLink: "/Major Assignment Week 2.pdf", // Replace with actual Drive link if needed
-      submitLink: "#",
+      submitLink: "https://forms.gle/nwhNQNPcxeQVFsN99",
       isHighlight: true,
-      submissionOpen: false // Disables the button automatically
+      submissionOpen: true // Disables the button automatically
     }
   ];
 

@@ -226,7 +226,7 @@ export default function SparkleBackground() {
             }}
           >
             <div className="animate-custom-marquee text-[11px] sm:text-xs font-bold tracking-widest text-zinc-300 uppercase">
-              📅WEEK 02 IS LIVE! &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+              📅WEEK 02 SUBMISSIONS ARE LIVE! &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
               🏆LEADERBOARD IS UPDATED! 
               &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;🚀 EXPLORE RESOURCES OF WEEK02!  &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp; 
               
