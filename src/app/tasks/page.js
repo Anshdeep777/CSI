@@ -90,18 +90,18 @@ const Page = () => {
       type: "Read for more info", 
       title: "MINOR TASK", 
       driveLink: "https://drive.google.com/file/d/1_jzmFEZYqJN70xpizhOMpkYNMpAlZjXw/view?usp=sharing",
-      submitLink: "#", // Replace with your actual Google Form URL for Week 3
+      submitLink: "https://forms.gle/djpeabciJtnW3k4R8", // Replace with your actual Google Form URL for Week 3
       isHighlight: false,
-      submissionOpen: false
+      submissionOpen: true
     },
     { 
       id: 2, 
       type: "Read for more info", 
       title: "MAJOR DELIVERABLE", 
       driveLink: "https://drive.google.com/file/d/10ONabsfHO75j6aq5C1dJ18cgwHT77McU/view?usp=sharing",
-      submitLink: "#", // Replace with your actual Google Form URL for Week 3
+      submitLink: "https://docs.google.com/forms/u/1/d/e/1FAIpQLSeYk6w4Txw3MAMz8Ru1su7hKbldkfoH-LD8ODlSekOfoBqobA/viewform?usp=send_form", // Replace with your actual Google Form URL for Week 3
       isHighlight: true,
-      submissionOpen: false 
+      submissionOpen: true
     }
   ];
 

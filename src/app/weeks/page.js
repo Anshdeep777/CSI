@@ -170,7 +170,51 @@ const Page = () => {
           </div>
         </div>
 
-        {/* Card 4: Restricted */}
+        {/* Card 4: New Active Deployment (Week 04) */}
+        <div
+          onClick={() => router.push("/weeks/04")}
+          className="w-full max-w-[380px] h-[500px] sm:h-[520px] rounded-[36px] relative overflow-hidden bg-zinc-900 border border-yellow-500/30 shadow-[0_0_30px_rgba(234,179,8,0.15)] group transition-all duration-300 hover:border-yellow-400/60 hover:shadow-[0_0_40px_rgba(234,179,8,0.3)] cursor-pointer"
+        >
+          <img
+            src="/poster4.png"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            alt="Active Operational Objective"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent z-10" />
+
+          <div className="absolute bottom-0 left-0 w-full p-6 z-20 flex flex-col gap-3.5">
+            <div>
+              <p className="text-yellow-400 text-xs font-black tracking-widest uppercase mb-1 animate-pulse">
+                Active Now
+              </p>
+              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-wide uppercase">
+                Week 04: Designing Solutions & Strategy Roadmaps
+              </h2>
+              <p className="text-xs text-white/80 font-bold mt-2 leading-relaxed">
+                A ₹800 Cr funding freeze looms over the sustainability
+                initiative. Audit supplier ethics, learn how green bonds and
+                ESG investing finance the pivot, and sequence a 36-month
+                roadmap to sell the board on quick wins, operational shifts,
+                and structural transformation.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2 items-center">
+              <span className="bg-yellow-500/20 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black tracking-wider text-yellow-400 uppercase border border-yellow-500/40">
+                Unlocked
+              </span>
+              <span className="bg-white/5 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold tracking-wider text-zinc-300 border border-white/10">
+                #WEEK04
+              </span>
+            </div>
+
+            <button className="w-full bg-yellow-500 text-black font-bold py-3 px-4 rounded-full text-sm transition-transform active:scale-[0.98] hover:bg-yellow-400 shadow-[0_0_15px_rgba(234,179,8,0.4)]">
+              Explore
+            </button>
+          </div>
+        </div>
+
+        {/* Card 5: Restricted */}
         <div className="w-full max-w-[380px] h-[500px] sm:h-[520px] rounded-[36px] relative overflow-hidden bg-zinc-900 border border-white/5 shadow-2xl group transition-all duration-300 opacity-60">
           <img
             src="/lock.png"

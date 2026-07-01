@@ -74,7 +74,7 @@ const Page = () => {
       driveLink: "https://drive.google.com/file/d/1nXKtu4KBEj8oYxL_hr8CdnI54aKgNT1b/view?usp=sharing",
       week: "week01",
     },
-    
+
     // Week 02
     {
       id: 8,
@@ -161,7 +161,30 @@ const Page = () => {
       imageUrl: "/four.png",
       driveLink: "https://drive.google.com/file/d/1O6IqKA2xzGrX8vkjShID4IhDsELijda7/view?usp=sharing",
       week: "week03",
-    }
+    },
+
+    // Week 04
+    {
+      id: 20,
+      title: "Sustainable Supply Chains & Ethical Procurement",
+      imageUrl: "/one.png",
+      driveLink: "https://drive.google.com/file/d/13huTSZ5C6k-Dq83r_k-b7JwK_BXjKWmM/view?usp=sharing",
+      week: "week04",
+    },
+    {
+      id: 21,
+      title: "Corporate Goal Setting & Roadmaps",
+      imageUrl: "/two.png",
+      driveLink: "https://drive.google.com/file/d/16eoIJCCK59uDag-GfR0qHLcop5U2Avxs/view?usp=sharing",
+      week: "week04",
+    },
+    {
+      id: 22,
+      title: "Emerging Trends: Energy Transition & Climate Adaptation",
+      imageUrl: "/three.png",
+      driveLink: "https://drive.google.com/file/d/1ZgUhOtEqXmI-Uc1pX0YibTmHxh-Y8Ggn/view?usp=sharing",
+      week: "week04",
+    },
   ];
 
   const filteredDocs = documents.filter((doc) => doc.week === activeWeek);
@@ -218,6 +241,16 @@ const Page = () => {
             }`}
           >
             Week 03
+          </button>
+          <button
+            onClick={() => setActiveWeek("week04")}
+            className={`px-6 py-2 rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 ${
+              activeWeek === "week04"
+                ? "bg-zinc-200 text-black shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+                : "text-zinc-500 hover:text-zinc-300"
+            }`}
+          >
+            Week 04
           </button>
         </div>
 

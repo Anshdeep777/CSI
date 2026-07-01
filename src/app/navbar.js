@@ -63,12 +63,12 @@ export default function Navbar() {
     { label: "Week01", path: "/weeks/01" },
     { label: "Week02", path: "/weeks/02" },
      { label: "Week03", path: "/weeks/03" },
+     { label: "Week04", path: "/weeks/04" }
   ];
 
   return (
     <>
       <NavLoader loading={loading} />
-
       {/* TOP HEADER */}
       <header className="fixed top-0 left-0 w-full z-[9995] transform-gpu h-[70px] md:h-[80px] flex justify-between items-center px-4 md:px-8 bg-[#050505]/90 backdrop-blur-md border-b border-white/5 pointer-events-auto md:pointer-events-none md:bg-transparent md:backdrop-blur-none md:border-none transition-all duration-300">
         <button
